@@ -1,0 +1,20 @@
+import React from 'react';
+import { FaRegMoon } from 'react-icons/fa'
+import { DarkOrLightMode, HeaderFile, DarkOrLightModeButton } from './styledComponents.js'
+class Header extends React.Component {
+    onChangeTheme = () => {
+        this.props.onChangeTheme()
+    }
+    render() {
+        return (
+            <DarkOrLightMode mode={(this.props.selectedTheme === 'dark Mode') ?"dark":"light"}>
+            <HeaderFile>
+            <h3>Where in the World</h3>
+            <DarkOrLightModeButton onClick={this.onChangeTheme} mode={(this.props.selectedTheme === 'dark Mode') ?"dark":"light"}>
+            < FaRegMoon />{this.props.selectedTheme}</DarkOrLightModeButton>
+            </HeaderFile>
+            </DarkOrLightMode>
+        )
+    }
+}
+export default Header
