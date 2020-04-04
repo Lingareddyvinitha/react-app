@@ -1,11 +1,16 @@
 import React from 'react';
 import { FaRegMoon } from 'react-icons/fa'
 import { DarkOrLightMode, HeaderFile, DarkOrLightModeButton } from './styledComponents.js'
+let shuffle = require('shuffle-array')
 class Header extends React.Component {
     onChangeTheme = () => {
         this.props.onChangeTheme()
     }
     render() {
+        const array = [1, 2, 3, 4];
+        shuffle(array)
+        console.log(array)
+
         return (
             <DarkOrLightMode mode={(this.props.selectedTheme === 'dark Mode') ?"dark":"light"}>
             <HeaderFile>

@@ -10,7 +10,6 @@ const DarkOrLightMode = styled("div")
     h3 {
     margin:5px;
         }
-        ${Color}
         `
 
 const HeaderFile = styled.div `

@@ -27,6 +27,9 @@ class Home extends React.Component {
                   <li>
                     <Link to="/DashBoard">DashBoard</Link>
                   </li>
+                  <li>
+                    <Link to="/EmojiGame">EmojiGame</Link>
+                  </li>
                 </ul>
               </nav>
                   </div>

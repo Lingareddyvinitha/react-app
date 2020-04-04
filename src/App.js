@@ -33,6 +33,7 @@ import DisableButton from './components/Form/DisableButton.js'
 import VisitedCities from './components/Form/VisitedCities.js'
 import DashBoard from './components/CovidGraphs'
 import CountryDetails from './components/CovidGraphs/CountryDetails.js'
+import EmojiGame from './components/EmojiGame'
 import {
   BrowserRouter as Router,
   Switch,
@@ -108,6 +109,7 @@ class App extends React.Component {
           <Route exact path={'/DashBoard/Details/:countryId'}>
             <CountryDetails selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
           </Route>
+          <Route path="/EmojiGame" children={<EmojiGame/>} />
           <Route path="/">
             <Home />
           </Route>

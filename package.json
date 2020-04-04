@@ -17,6 +17,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "recharts": "^1.8.5",
+    "shuffle-array": "^1.0.1",
     "tailwind.macro": "^1.0.0-alpha.10"
   },
   "scripts": {
