@@ -1,6 +1,10 @@
 import React from 'react';
 import NavBar from './NavBar.js'
 import EmojiCards from './EmojiCards.js'
+import HowToPlay from './HowToPlay.js'
+import WinOrLose from './WinOrLose.js'
+import { Container } from './styledComponents.js'
+let shuffle = require('shuffle-array')
 class EmojiGame extends React.Component {
     constructor(props) {
         super(props);
@@ -17,30 +21,38 @@ class EmojiGame extends React.Component {
             "Star-Struck",
             "Winking Face with Tongue",
         ]
-        /*
+        this.score = 0;
+        this.topScore = 0
         this.state = {
-            emoji: [
-                { id: 0, isClicked: false, name: "Exploding Head", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-1.png" },
-                { id: 1, isClicked: false, name: "Grinning Face with Sweat", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-2.png" },
-                { id: 2, isClicked: false, name: "Smiling Face with Heart-Eyes", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-3.png" },
-                { id: 3, isClicked: false, name: "Smirking Face", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-4.png" },
-                { id: 4, isClicked: false, name: "Thinking Face", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-5.png" },
-                { id: 5, isClicked: false, name: "Winking Face", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-6.png" },
-                { id: 6, isClicked: false, name: "Grinning Face", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-7.png" },
-                { id: 7, isClicked: false, name: "Crying Face", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-8.png" },
-                { id: 8, isClicked: false, name: "Astonished Face", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-9.png" },
-                { id: 9, isClicked: false, name: "Face with Tears of Joy", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-10.png" },
-                { id: 10, isClicked: false, name: "Star-Struck", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-11.png" },
-                { id: 11, isClicked: false, name: "Winking Face with Tongue", img: "https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-12.png" }
-            ]
-        }*/
-        this.state = {
-            emojis: []
+            emojis: [],
+            gameState: "PLAYING",
+            selectedTheme: EmojiGame.themeOptions.light
         }
     }
+
+    static themeOptions = {
+        light: {
+            id: "0",
+            name: "LIGHT THEME",
+            backgroundcolor: "bg-indigo-100",
+            backgroundcolorForCard: "white",
+            textColor: "black"
+
+        },
+        dark: {
+            id: "1",
+            name: "DARK THEME",
+            backgroundcolor: "#1a202c",
+            backgroundcolorForCard: "#2b6cb0",
+            textColor: "white"
+        }
+    }
+
+
     componentDidMount() {
         this.getEmojies()
     }
+
     getEmojies = () => {
         let emojisArray = []
         this.emojiNames.forEach(emojiName => {
@@ -49,18 +61,97 @@ class EmojiGame extends React.Component {
                 isClicked: false,
                 name: emojiName,
                 avtar: `https://tap.ibhubs.in/react/assignments/assignment-5/preview/images/memoji-${this.emojiNames.indexOf(emojiName)+1}.png`
-            }
+            };
             emojisArray = [...emojisArray, emoji];
-        })
+        });
         this.setState({ emojis: emojisArray });
     }
+
+    onClickEmoji = (clickedEmojiId) => {
+        let clickedEmojiInfo = this.state.emojis.find(emoji => emoji.id === clickedEmojiId);
+
+        if (this.score === this.state.emojis.length - 1 && clickedEmojiInfo.isClicked === false) {
+            this.incrementScore();
+            this.setState({ gameState: "WIN" });
+        }
+
+        else if (clickedEmojiInfo.isClicked === false) {
+            this.incrementScore();
+            this.shuffleEmojis();
+            this.updateCardStatus(clickedEmojiInfo);
+        }
+
+        else {
+            this.setState({ gameState: "LOSE" });
+        }
+
+
+    }
+
+    shuffleEmojis = () => {
+        this.setState({ emojis: shuffle(this.state.emojis) });
+    }
+
+    incrementScore = () => {
+        //this.setState({ score: this.state.score + 1 })
+        this.score = this.score + 1;
+    }
+
+    upDateTopScore = () => {
+        if (this.topScore < this.score) {
+            this.topScore = this.score;
+        }
+    }
+
+    updateCardStatus = (clickedEmojiInfo) => {
+        this.state.emojis = this.state.emojis.map(emoji => {
+            if (emoji === clickedEmojiInfo) {
+                emoji.isClicked = true;
+            }
+        });
+
+    }
+
+    setDefaultCardStatus = () => {
+        this.state.emojis = this.state.emojis.map(emoji => {
+            emoji.isClicked = false;
+            return emoji;
+        });
+    }
+
+    playAgain = () => {
+        this.setDefaultCardStatus();
+        this.upDateTopScore();
+        this.score = 0
+        this.setState({
+            gameState: "PLAYING",
+        });
+    }
+
+    onChangeTheme = () => {
+        if (this.state.selectedTheme.name === 'LIGHT THEME') {
+            this.setState({ selectedTheme: EmojiGame.themeOptions.dark })
+        }
+        else {
+            this.setState({ selectedTheme: EmojiGame.themeOptions.light })
+        }
+    }
+
     render() {
-        const emojis = this.state.emojis;
+        const { emojis } = this.state;
+        const { gameState } = this.state;
+        const score = this.score;
+        const topScore = this.topScore;
+        const theme = this.state.selectedTheme;
         return (
-            <div>
-            <NavBar/>
-            <EmojiCards emojis={emojis}/>
-            </div>
+            <Container theme={theme.backgroundcolor} textColor={theme.textColor}>
+            <NavBar score={score} topScore={topScore} onChangeTheme={this.onChangeTheme} selectedTheme={theme} />
+            {(gameState==="PLAYING")?
+            <EmojiCards emojis={emojis} onClickEmoji={this.onClickEmoji} selectedTheme={theme}/>
+            :<WinOrLose gameState={gameState} score={score} playAgain={this.playAgain} />
+            }
+            <HowToPlay/>
+            </Container>
         );
     }
 }

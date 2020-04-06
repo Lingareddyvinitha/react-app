@@ -52,11 +52,15 @@ class App extends React.Component {
     light: {
       id: "0",
       name: "light Mode",
-      backgroundcolor: "white"
+      backgroundColor: "bg-indigo-100",
+      backgroundColorForCard: "white"
+
     },
     dark: {
       id: "1",
-      name: "dark Mode"
+      name: "dark Mode",
+      backgroundcolor: "#1a202c",
+      backgroundColorForCard: "#2b6cb0"
     }
   }
   onChangeTheme = () => {
@@ -109,7 +113,7 @@ class App extends React.Component {
           <Route exact path={'/DashBoard/Details/:countryId'}>
             <CountryDetails selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
           </Route>
-          <Route path="/EmojiGame" children={<EmojiGame/>} />
+          <Route path="/EmojiGame" children={<EmojiGame />} />
           <Route path="/">
             <Home />
           </Route>

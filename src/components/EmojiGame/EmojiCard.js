@@ -1,11 +1,16 @@
 import React from 'react';
 import { Card, EmojiImg, EmojiName } from './styledComponents.js'
 class EmojiCard extends React.Component {
+    onClickEmoji = () => {
+        const { emoji: { id } } = this.props;
+        this.props.onClickEmoji(id);
+    }
 
     render() {
-        let { emoji } = this.props;
+        const { emoji } = this.props;
+        const { selectedTheme } = this.props;
         return (
-            <Card>
+            <Card onClick={this.onClickEmoji} theme={selectedTheme.backgroundcolorForCard} textColor={selectedTheme.textColor}>
         <EmojiImg src={emoji.avtar} alt={emoji.name}>
         </EmojiImg>
         <EmojiName>{emoji.name}</EmojiName>
