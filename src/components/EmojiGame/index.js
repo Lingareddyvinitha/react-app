@@ -34,7 +34,8 @@ class EmojiGame extends React.Component {
         light: {
             id: "0",
             name: "LIGHT THEME",
-            backgroundcolor: "bg-indigo-100",
+            backgroundcolorForNav: "white",
+            backgroundcolorForCards: "bg-indigo-100",
             backgroundcolorForCard: "white",
             textColor: "black"
 
@@ -42,6 +43,7 @@ class EmojiGame extends React.Component {
         dark: {
             id: "1",
             name: "DARK THEME",
+            backgroundcolorForNav:"bg"
             backgroundcolor: "#1a202c",
             backgroundcolorForCard: "#2b6cb0",
             textColor: "white"
