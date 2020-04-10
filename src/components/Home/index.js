@@ -39,6 +39,9 @@ class Home extends React.Component {
                   <li>
                     <Link to="/mobx-store-todo-app">TodoApp</Link>
                   </li>
+                  <li>
+                    <Link to="/events-app">EventsApp</Link>
+                  </li>
                 </ul>
               </nav>
                   </div>

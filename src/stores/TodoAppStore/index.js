@@ -1,13 +1,14 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, reaction, toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import TodoModel from './TodoModel'
 class TodoAppStore {
+
     id;
-    @observable todos;
+    @observable todos = [];
     @observable selectedFilter;
     constructor() {
-        this.todos = [];
-        this.selectedFilter = "ALL"
+        this.selectedFilter = "ALL";
+
     }
     @action.bound
     onAddTodo(title) {
@@ -36,6 +37,9 @@ class TodoAppStore {
     onClearCompleted() {
         this.todos = this.todos.filter(todo => !todo.isCompleted)
     }
+    todoReaction = reaction(
+        () => { return toJS(this.todos).length },
+        (length) => alert(length))
 
     @computed get ActiveTodosCount() {
         return this.todos.filter(todo => !todo.isCompleted).length;
@@ -54,6 +58,16 @@ class TodoAppStore {
         }
     }
 
+    todoSuccessReaction = reaction(
+        () => { return this.ActiveTodosCount },
+        (length) => {
+            if (length === 0) {
+                alert("all Completed")
+                //reaction.dispose()
+                //this.todoSuccessReaction()
+            }
+        }, { delay: 500 }
+    )
 
 }
 

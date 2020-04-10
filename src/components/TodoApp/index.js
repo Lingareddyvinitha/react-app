@@ -3,6 +3,7 @@ import TodoList from './TodoList.js';
 import TodoFooter from './TodoFooter.js';
 import AddTodo from './AddTodo.js';
 import { observer } from 'mobx-react';
+import { reaction } from 'mobx';
 import todoAppStore from '../../stores/TodoAppStore'
 @observer
 class TodoApp extends React.Component {
@@ -12,6 +13,12 @@ class TodoApp extends React.Component {
     onRemoveTodo = (idOfRemoveTodo) => {
         todoAppStore.onRemoveTodo(idOfRemoveTodo);
     }
+    /*
+    todoReaction = reaction(
+        () => { return todoAppStore.todos.map(todo => todo.title) },
+        (title) => alert(typeof todoReaction))
+        */
+
     render() {
         return (
             <div>
