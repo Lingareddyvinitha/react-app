@@ -15,8 +15,10 @@ class WinOrLose extends React.Component {
     }
     render() {
         const { score } = this.props;
+        const { selectedTheme } = this.props;
+        console.log(selectedTheme);
         return (
-            <Result>
+            <Result theme={selectedTheme.backgroundcolorCards} textColor={selectedTheme.textColor}>
         <ShowScore>{score}</ShowScore>
         <Message color={this.playerReport()}>{this.playerReport()}</Message>
         <PlayAgainButton onClick={this.playAgain}>Play Again</PlayAgainButton>

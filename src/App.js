@@ -1,4 +1,5 @@
 import React from "react";
+//import { observable } from 'mobx'
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import HomePage from "./components/HomePage";
@@ -21,6 +22,7 @@ const App = () => {
   );
 };
 */
+
 import Home from './components/Home'
 import TodosList from './components/TodosList'
 import CountryList from './components/CountryList'
@@ -34,6 +36,10 @@ import VisitedCities from './components/Form/VisitedCities.js'
 import DashBoard from './components/CovidGraphs'
 import CountryDetails from './components/CovidGraphs/CountryDetails.js'
 import EmojiGame from './components/EmojiGame'
+//import CounterPage from './components/CounterPage'
+import CounterApp from './components/CounterApp'
+import MobxTodoApp from './components/MobxTodoApp'
+import TodoApp from './components/TodoApp'
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,13 +47,24 @@ import {
   Link
 }
 from "react-router-dom";
+//@observer
+
+
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectedTheme: 'light Mode'
-    }
+
+  //@observable selectedTheme = 'light Mode'
+  /*
+  getCurrentTheme = () => {
+    return themeStore.selectedTheme;
   }
+  onChangeTheme = () => {
+    themeStore.setCurrentTheme()
+    //this.selectedTheme = theme;
+  }*/
+  /*
+  this.state = {
+    selectedTheme: 'light Mode'
+  }*/
   static themeOptions = {
     light: {
       id: "0",
@@ -63,14 +80,17 @@ class App extends React.Component {
       backgroundColorForCard: "#2b6cb0"
     }
   }
+  /*
   onChangeTheme = () => {
-    if (this.state.selectedTheme === 'light Mode') {
-      this.setState({ selectedTheme: 'dark Mode' })
+    if (this.getCurrentTheme() === 'light Mode') {
+      //this.setState({ selectedTheme: 'dark Mode' })
+      this.setCurrentTheme("dark Mode");
     }
     else {
-      this.setState({ selectedTheme: 'light Mode' })
+      //this.setState({ selectedTheme: 'light Mode' })
+      this.setCurrentTheme("light Mode");
     }
-  }
+  }*/
   render() {
     let dessertList = ["Vanilla", "ButterScotch", "Gulab Jamum", "Yoghurt Pots", "Baked Banana", "Chocolate"]
     let statesList = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
@@ -80,6 +100,11 @@ class App extends React.Component {
       <Router basename={process.env.PUBLIC_URL}>
       <div>
         <Switch>
+        {/*
+        <Route path="/counter-page">
+            <CounterPage />
+          </Route>
+        */}
           <Route path="/TodosList">
             <TodosList />
           </Route>
@@ -108,12 +133,15 @@ class App extends React.Component {
             <DisableButton />
           </Route>
           <Route exact path="/DashBoard">
-            <DashBoard selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
+            <DashBoard/>
           </Route>
           <Route exact path={'/DashBoard/Details/:countryId'}>
-            <CountryDetails selectedTheme={this.state.selectedTheme} onChangeTheme={this.onChangeTheme}/>
+            <CountryDetails />
           </Route>
           <Route path="/EmojiGame" children={<EmojiGame />} />
+          <Route path="/counter-app" children={<CounterApp />} />
+          <Route path="/mobx-todo-app" children={<MobxTodoApp />} />
+          <Route path="/mobx-store-todo-app" children={<TodoApp />} />
           <Route path="/">
             <Home />
           </Route>
@@ -125,7 +153,7 @@ class App extends React.Component {
   }
 
 }
-export default App
+export default (App)
 /*
 export default function App() {
   return (

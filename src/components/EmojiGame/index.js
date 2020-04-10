@@ -1,10 +1,15 @@
 import React from 'react';
+import { observer } from 'mobx-react'
+//import { configure } from 'mobx'
 import NavBar from './NavBar.js'
 import EmojiCards from './EmojiCards.js'
 import HowToPlay from './HowToPlay.js'
 import WinOrLose from './WinOrLose.js'
 import { Container } from './styledComponents.js'
+import emojiThemeStore from '../../stores/EmojiThemeStore'
 let shuffle = require('shuffle-array')
+//configure({ enforceActions: "observed" });
+@observer
 class EmojiGame extends React.Component {
     constructor(props) {
         super(props);
@@ -26,33 +31,19 @@ class EmojiGame extends React.Component {
         this.state = {
             emojis: [],
             gameState: "PLAYING",
-            selectedTheme: EmojiGame.themeOptions.light
+            //selectedTheme: EmojiGame.themeOptions.light
         }
     }
-
-    static themeOptions = {
-        light: {
-            id: "0",
-            name: "LIGHT THEME",
-            backgroundcolorForNav: "white",
-            backgroundcolorForCards: "bg-indigo-100",
-            backgroundcolorForCard: "white",
-            textColor: "black"
-
-        },
-        dark: {
-            id: "1",
-            name: "DARK THEME",
-            backgroundcolorForNav:"bg"
-            backgroundcolor: "#1a202c",
-            backgroundcolorForCard: "#2b6cb0",
-            textColor: "white"
-        }
-    }
-
 
     componentDidMount() {
         this.getEmojies()
+    }
+
+    getCurrentTheme = () => {
+        return emojiThemeStore.selectedTheme;
+    }
+    onChangeTheme = () => {
+        emojiThemeStore.setCurrentTheme()
     }
 
     getEmojies = () => {
@@ -129,7 +120,7 @@ class EmojiGame extends React.Component {
             gameState: "PLAYING",
         });
     }
-
+    /*
     onChangeTheme = () => {
         if (this.state.selectedTheme.name === 'LIGHT THEME') {
             this.setState({ selectedTheme: EmojiGame.themeOptions.dark })
@@ -137,22 +128,22 @@ class EmojiGame extends React.Component {
         else {
             this.setState({ selectedTheme: EmojiGame.themeOptions.light })
         }
-    }
+    }*/
 
     render() {
         const { emojis } = this.state;
         const { gameState } = this.state;
         const score = this.score;
         const topScore = this.topScore;
-        const theme = this.state.selectedTheme;
+        const theme = this.getCurrentTheme();
         return (
-            <Container theme={theme.backgroundcolor} textColor={theme.textColor}>
+            <Container theme={theme.backgroundcolorForCards} textColor={theme.textColor}>
             <NavBar score={score} topScore={topScore} onChangeTheme={this.onChangeTheme} selectedTheme={theme} />
             {(gameState==="PLAYING")?
             <EmojiCards emojis={emojis} onClickEmoji={this.onClickEmoji} selectedTheme={theme}/>
-            :<WinOrLose gameState={gameState} score={score} playAgain={this.playAgain} />
+            :<WinOrLose gameState={gameState} score={score} playAgain={this.playAgain} selectedTheme={theme} />
             }
-            <HowToPlay/>
+            <HowToPlay selectedTheme={theme}/>
             </Container>
         );
     }

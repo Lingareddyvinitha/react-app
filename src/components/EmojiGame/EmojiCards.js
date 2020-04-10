@@ -7,12 +7,13 @@ class EmojiCards extends React.Component {
     }
     renderEmojis = () => {
         const { emojis } = this.props
-        const {selectedTheme}=this.props;
+        const { selectedTheme } = this.props;
         return emojis.map(emoji => <EmojiCard key={emoji.name} emoji={emoji} onClickEmoji={this.onClickEmoji} selectedTheme={selectedTheme} />)
     }
     render() {
+        const { selectedTheme } = this.props
         return (
-            <Cards>
+            <Cards theme={selectedTheme.backgroundcolorCards}c textColor={selectedTheme.textColor}>
         {this.renderEmojis()}
         </Cards>
         );

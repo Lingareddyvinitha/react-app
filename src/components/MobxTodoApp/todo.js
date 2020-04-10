@@ -1,8 +1,12 @@
 /*global React*/
 /*global ReactDOM*/
 import React from 'react';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react'
 import './index.css'
+@observer
 class ToDoItem extends React.Component {
+    @observable disable;
     constructor(props) {
         super(props);
         this.value = props.value;
@@ -12,22 +16,28 @@ class ToDoItem extends React.Component {
         this.editElementsInList = props.editElementsInList;
         this.completed = props.isCompleted
         this.checked = props.checked
+        /*
         this.state = {
             disable: false
-        }
+        }*/
+        this.disable = false;
     }
     editElement = (event) => {
         if (event.target.checked === true) {
             this.completed(true, event.target.parentNode.id);
+            /*
             this.setState((state => ({
                 disable: true
-            })));
+            })));*/
+            this.disable = true
         }
         else {
             this.completed(false, event.target.parentNode.id);
+            /*
             this.setState((state => ({
                 disable: false
-            })));
+            })));*/
+            this.disable = false
         }
     }
     removeTodo = (event) => {
@@ -40,7 +50,7 @@ class ToDoItem extends React.Component {
         return (
             <li className="li-element" id={this.listId}>
             <input  type="checkbox"onClick={this.editElement} defaultChecked={this.checked}></input>
-            <input defaultValue={this.value} className="text" disabled={this.state.disable} onChange={this.updateTodoValue} />
+            <input defaultValue={this.value} className="text" disabled={this.disable} onChange={this.updateTodoValue} />
             <span className="close" onClick={this.removeTodo}>×</span>
             </li>
         );

@@ -1,10 +1,13 @@
 /*global fetch*/
 import React from 'react';
+import { observer } from 'mobx-react'
 import Countries from './Countries.js';
 import './index.css';
 import loaderImg from './loader-icon.svg';
 import CountriesFilterBar from './CountriesFilterBar.js';
 import Header from './Header.js';
+import themeStore from '../../stores/ThemeStore'
+@observer
 class DashBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +19,12 @@ class DashBoard extends React.Component {
             errorMessage: "",
             sort: true
         };
+    }
+    getCurrentTheme = () => {
+        return themeStore.selectedTheme;
+    }
+    onChangeTheme = () => {
+        themeStore.setCurrentTheme()
     }
     async componentDidMount() {
         let countries = await this.getCountries();
@@ -67,9 +76,6 @@ class DashBoard extends React.Component {
         }
         return countriesShown;
     }
-    onChangeTheme = (mode) => {
-        this.props.onChangeTheme(mode);
-    }
     onChangeSearchText = (event) => {
         if (event.key === 'Enter') {
             this.setState({ searchText: event.target.value });
@@ -88,7 +94,7 @@ class DashBoard extends React.Component {
     render() {
         const countries = this.displayCountries();
         let online = window.navigator.onLine
-        const selectedTheme = this.props.selectedTheme;
+        const selectedTheme = this.getCurrentTheme();
         if (online !== true || (this.state.searchText === "" && countries.length === 0)) {
             return (<div className="show-error">{(online===true)?<div className="message"><b>{this.state.errorMessage}</b></div>:<div className="message"><b>Check your connection</b></div>}</div>)
         }

@@ -30,6 +30,15 @@ class Home extends React.Component {
                   <li>
                     <Link to="/EmojiGame">EmojiGame</Link>
                   </li>
+                  <li>
+                    <Link to="/counter-app">CounterApp</Link>
+                  </li>
+                  <li>
+                    <Link to="/mobx-todo-app">MobxTodoApp</Link>
+                  </li>
+                  <li>
+                    <Link to="/mobx-store-todo-app">TodoApp</Link>
+                  </li>
                 </ul>
               </nav>
                   </div>

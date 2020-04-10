@@ -1,10 +1,19 @@
 /*global fetch*/
 import React from 'react'
+import { observer } from 'mobx-react'
 import Header from './Header.js'
 import { TiArrowLeftThick } from 'react-icons/ti'
 import loaderImg from './loader-icon.svg'
 import { withRouter } from "react-router-dom";
+import themeStore from '../../stores/ThemeStore'
+@observer
 class CountryDetails extends React.Component {
+    getCurrentTheme = () => {
+        return themeStore.selectedTheme;
+    }
+    onChangeTheme = () => {
+        themeStore.setCurrentTheme()
+    }
     state = { countries: [] }
     async componentDidMount() {
         this.getCountryDetails()
@@ -17,9 +26,6 @@ class CountryDetails extends React.Component {
     navigateBack = () => {
         this.props.history.goBack();
     }
-    onChangeTheme = (mode) => {
-        this.props.onChangeTheme(mode)
-    }
     pathChanges = (border) => {
         let path = `/DashBoard/Details/:${border}`
         this.props.history.push(path);
@@ -28,7 +34,7 @@ class CountryDetails extends React.Component {
         this.pathChanges(border)
     }
     render() {
-        const selectedTheme = this.props.selectedTheme;
+        const selectedTheme = this.getCurrentTheme();
         const alpha3Code = this.props.history.location.pathname.substr(20)
         let countryObject = this.state.countries.filter(country => country.alpha3Code === alpha3Code);
         const countryInfo = countryObject[0];

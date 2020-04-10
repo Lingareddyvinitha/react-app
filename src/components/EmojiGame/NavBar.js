@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, GameName, TopScore, Score, ThemeButton } from './styledComponents.js'
+import { Header, Group, GameName, ScoresGroup, TopScore, Score, ThemeButton, Nav,NavSmallScreen } from './styledComponents.js'
 class NavBar extends React.Component {
     onChangeTheme = () => {
         this.props.onChangeTheme();
@@ -10,11 +10,21 @@ class NavBar extends React.Component {
         const { topScore } = this.props
         const { selectedTheme } = this.props;
         return (
-            <Header theme={selectedTheme.backgroundcolor} textColor={selectedTheme.textColor}>
+            <Header theme = { selectedTheme.backgroundcolorForNav } textColor = { selectedTheme.textColor }>
+            <Group>
             <GameName>EmojiGame</GameName>
+            <Nav>
+            <ScoresGroup>
             <Score>Score:{score}</Score>
             <TopScore>TopScore:{topScore}</TopScore>
+            </ScoresGroup>
             <ThemeButton onClick={this.onChangeTheme}>{selectedTheme.name}</ThemeButton>
+            </Nav>
+            </Group>
+            <NavSmallScreen>
+            <Score>Score:{score}</Score>
+            <TopScore>TopScore:{topScore}</TopScore>
+            </NavSmallScreen>
             </Header>
         );
     }
