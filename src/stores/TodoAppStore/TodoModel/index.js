@@ -8,9 +8,11 @@ class TodoModel {
         this.isCompleted = object.isCompleted
         this.id = object.id
     }
+    @action.bound
     onCompleteTodo(status) {
         this.isCompleted = status;
     }
+    @action.bound
     onUpdateTodoTitle(updatedTitle) {
         this.title = updatedTitle;
     }

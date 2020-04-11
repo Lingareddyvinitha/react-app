@@ -17,6 +17,7 @@ class AddEvent extends React.Component {
         onAddEvent(this.name, this.location1);
         this.name = "";
         this.location1 = ""
+        event.preventDefault()
     }
 
     onChangeEventName = (event) => {

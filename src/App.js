@@ -41,6 +41,7 @@ import CounterApp from './components/CounterApp'
 import MobxTodoApp from './components/MobxTodoApp'
 import TodoApp from './components/TodoApp'
 import EventsApp from './components/EventsApp'
+import A from './components/A'
 import {
   BrowserRouter as Router,
   Switch,
@@ -144,6 +145,7 @@ class App extends React.Component {
           <Route path="/mobx-todo-app" children={<MobxTodoApp />} />
           <Route path="/mobx-store-todo-app" children={<TodoApp />} />
           <Route path="/events-app" children={<EventsApp />} />
+          <Route path="/a" children={<A />} />
           <Route path="/">
             <Home />
           </Route>

@@ -5,7 +5,6 @@ class EventStore {
     @observable events = [];
     @action.bound
     onAddEvent(name, location1) {
-        alert("called")
         const object = {
             name,
             location1: location1,
@@ -17,11 +16,13 @@ class EventStore {
 
     }
     @action.bound
-    onDeleteEvent() {
+    onDeleteEvent(deletedEventId) {
+        this.events = this.events.filter((event) =>
+            event.id != deletedEventId
+        );
 
     }
     @computed get noOfEvents() {
-        alert(this.events.length)
         return this.events.length
 
     }
