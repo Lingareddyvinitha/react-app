@@ -5,28 +5,18 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react'
 import './index.css'
 
-type ToDoItemType={
-    id:any
-    value:string
-    removeTodoFromList:(id:number)=>void
-    isCompleted:(status:boolean,id:number)=>void
-    updateTodoValueInList:(updatedTodoValue:string, id:number)=>void
-    checked:boolean
-    key:number
-    
-}
 @observer
-class ToDoItem extends React.Component<ToDoItemType> {
+class ToDoItem extends React.Component {
     @observable disable;
     constructor(props) {
         super(props);
-        
+
         this.disable = false;
     }
     editElement = (event) => {
-         const{isCompleted}=this.props
+        const { isCompleted } = this.props
         if (event.target.checked === true) {
-           
+
             isCompleted(true, event.target.parentNode.id);
             /*
             this.setState((state => ({
@@ -44,15 +34,15 @@ class ToDoItem extends React.Component<ToDoItemType> {
         }
     }
     removeTodo = (event) => {
-        const{removeTodoFromList}=this.props
+        const { removeTodoFromList } = this.props
         removeTodoFromList(event.target.parentNode.id);
     }
     updateTodoValue = (event) => {
-        const{updateTodoValueInList}=this.props
+        const { updateTodoValueInList } = this.props
         updateTodoValueInList(event.target.value, event.target.parentNode.id);
     }
     render() {
-        const {value,id,checked}=this.props
+        const { value, id, checked } = this.props
         return (
             <li className="li-element" id={id}>
             <input  type="checkbox"onClick={this.editElement} defaultChecked={checked}></input>

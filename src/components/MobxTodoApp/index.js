@@ -6,24 +6,14 @@ import { observer } from 'mobx-react'
 import './index.css'
 import ToDoItem from './todo'
 
-type objectType={
-    id:number
-    value:string
-    removeTodoFromList:(id:number)=>void
-    isCompleted:(status:boolean,id:number)=>void
-    updateTodoValueInList:(updatedTodoValue:string, id:number)=>void
-    checked:boolean
-    key:number
-    
-}
 @observer
 class TodosLists extends React.Component {
-    @observable TodoLists:Array<objectType>=[]
-    @observable selectedFilter:string;
-    duplicateTodoList:Array<objectType>
+    @observable TodoLists = []
+    @observable selectedFilter;
+    duplicateTodoList
     constructor(props) {
         super(props);
-        this.duplicateTodoList=[];
+        this.duplicateTodoList = [];
         this.TodoLists = [];
         this.selectedFilter = "ALL";
     }
@@ -36,7 +26,7 @@ class TodosLists extends React.Component {
             else {
                 let id = Math.floor(Math.random() * 100)
                 event.target.value = "";
-                let object:objectType = { "id": id, "value": value, "removeTodoFromList": this.removeTodoFromList, "key": id, "isCompleted": this.isCompleted, "updateTodoValueInList": this.updateTodoValueInList, "checked": false };
+                let object = { "id": id, "value": value, "removeTodoFromList": this.removeTodoFromList, "key": id, "isCompleted": this.isCompleted, "updateTodoValueInList": this.updateTodoValueInList, "checked": false };
                 this.duplicateTodoList = [...this.duplicateTodoList, object]
                 this.TodoLists = [...this.TodoLists, object]
                 this.all();
@@ -44,14 +34,14 @@ class TodosLists extends React.Component {
         }
 
     }
-    removeTodoFromList = (idOfRemoveTodo:number) => {
+    removeTodoFromList = (idOfRemoveTodo) => {
         this.duplicateTodoList = this.duplicateTodoList.filter((todo) =>
             todo.id != idOfRemoveTodo
         );
         this.TodoLists = [...this.duplicateTodoList]
 
     }
-    updateTodoValueInList = (updatedTodoValue:string, id:number) => {
+    updateTodoValueInList = (updatedTodoValue, id) => {
         this.duplicateTodoList = this.duplicateTodoList.filter((todo) => {
             if (todo.id == id) {
                 todo.value = updatedTodoValue;
@@ -60,7 +50,7 @@ class TodosLists extends React.Component {
         });
         this.TodoLists = [...this.duplicateTodoList];
     }
-    isCompleted = (state:boolean, id:number) => {
+    isCompleted = (state, id) => {
         this.duplicateTodoList = this.duplicateTodoList.filter((todo) => {
             if (todo.id == id) {
                 todo.checked = state;

@@ -4,21 +4,18 @@ import { observer } from 'mobx-react';
 
 import { Event, Name, Location } from "./styledComponents"
 
-type InputEvent = React.ChangeEvent<HTMLInputElement>;
-type AddEventProps={
-    onAddEvent:(name:string,location1:string)=>void,
-}
+
 @observer
-class AddEvent extends React.Component<AddEventProps> {
-    @observable name:string;
-    @observable location1:string;
-    constructor(props:AddEventProps) {
+class AddEvent extends React.Component {
+    @observable name;
+    @observable location1;
+    constructor(props) {
         super(props)
         this.name = "";
         this.location1 = "";
     }
 
-    onAddEvent = (event:any) => {
+    onAddEvent = (event) => {
         const { onAddEvent } = this.props
         onAddEvent(this.name, this.location1);
         this.name = "";
@@ -26,13 +23,13 @@ class AddEvent extends React.Component<AddEventProps> {
         event.preventDefault()
     }
 
-    onChangeEventName = (event:InputEvent) => {
+    onChangeEventName = (event) => {
         this.name = event.target.value;
 
 
     }
 
-    onChangeEventLocation = (event:InputEvent) => {
+    onChangeEventLocation = (event) => {
         this.location1 = event.target.value;
 
     }

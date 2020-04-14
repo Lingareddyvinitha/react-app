@@ -1,12 +1,9 @@
 import React from 'react';
 
 
-type TodoFilterProps={
-    onChangeSelectedFilter:(filter:string)=>void
-    onClearCompleted :()=>void
-}
-class TodoFilter extends React.Component<TodoFilterProps>{
-    onChangeSelectedFilter = (event:any) => {
+
+class TodoFilter extends React.Component {
+    onChangeSelectedFilter = (event) => {
         const { onChangeSelectedFilter } = this.props
         onChangeSelectedFilter(event.target.value);
 

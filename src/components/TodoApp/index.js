@@ -7,13 +7,13 @@ import todoAppStore from '../../stores/TodoAppStore'
 
 @observer
 class TodoApp extends React.Component {
-    onAddTodo = (title:string) => {
+    onAddTodo = (title) => {
         todoAppStore.onAddTodo(title)
     }
-    onRemoveTodo = (idOfRemoveTodo:number) => {
+    onRemoveTodo = (idOfRemoveTodo) => {
         todoAppStore.onRemoveTodo(idOfRemoveTodo);
     }
-    
+
     render() {
         return (
             <div>

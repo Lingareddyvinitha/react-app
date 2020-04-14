@@ -1,25 +1,21 @@
 import { observable, action } from 'mobx';
 
-export type objectType={
-    title:string
-    isCompleted:boolean
-    id:number
-}
+
 class TodoModel {
-    id:number;
-    @observable title:string;
-    @observable isCompleted:boolean;
-    constructor(object:objectType) {
+    id;
+    @observable title;
+    @observable isCompleted;
+    constructor(object) {
         this.title = object.title;
         this.isCompleted = object.isCompleted
         this.id = object.id
     }
     @action.bound
-    onCompleteTodo(status:boolean) {
+    onCompleteTodo(status) {
         this.isCompleted = status;
     }
     @action.bound
-    onUpdateTodoTitle(updatedTitle:string) {
+    onUpdateTodoTitle(updatedTitle) {
         this.title = updatedTitle;
     }
 }

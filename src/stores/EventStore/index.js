@@ -2,18 +2,18 @@ import { observable, action, computed } from 'mobx';
 
 
 import EventModel from './EventModel'
-import {objectType} from './EventModel'
+
 
 class EventStore {
-    @observable events:Array<EventModel>;
-    
-    constructor(){
-        this.events=[];
+    @observable events;
+
+    constructor() {
+        this.events = [];
     }
-    
+
     @action.bound
-    onAddEvent(name:string, location1:string) {
-        const object:objectType = {
+    onAddEvent(name, location1) {
+        const object = {
             name,
             location1,
             id: Math.floor(Math.random() * 100)
@@ -24,7 +24,7 @@ class EventStore {
 
     }
     @action.bound
-    onDeleteEvent(deletedEventId:number) {
+    onDeleteEvent(deletedEventId) {
         this.events = this.events.filter((event) =>
             event.id != deletedEventId
         );
@@ -37,5 +37,5 @@ class EventStore {
 
 }
 
-const eventStore:EventStore = new EventStore()
-export {eventStore as default};
+const eventStore = new EventStore()
+export { eventStore as default };

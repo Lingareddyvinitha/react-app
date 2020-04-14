@@ -1,23 +1,19 @@
 import { observable, action } from 'mobx';
 
 //import { observer } from 'mobx-react'
-export type objectType={
-    name:string
-    location1:string
-    id:number
-}
-class EventModel{
-    id:number;
-    @observable name:string;
-    @observable location1:string;
-    constructor(object:any) {
+
+class EventModel {
+    id;
+    @observable name;
+    @observable location1;
+    constructor(object) {
 
         this.name = object.name;
         this.location1 = object.location1
         this.id = object.id
     }
     @action.bound
-    onUpdateEventDetails(name:string, location1:string) {
+    onUpdateEventDetails(name, location1) {
 
 
         //alert(name);

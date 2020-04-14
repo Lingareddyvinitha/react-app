@@ -1,27 +1,24 @@
 import React from 'react';
 
-type InputEvent = React.ChangeEvent<HTMLInputElement>;
-type AddTodoProps={
-    onAddTodo:(title:string)=>void
-}
-class AddTodo extends React.Component<AddTodoProps> {
-    todoTitle:string
+
+class AddTodo extends React.Component {
+    todoTitle
     constructor(props) {
         super(props);
         this.todoTitle = ""
     }
-    onChangeInput = (event:InputEvent) => {
+    onChangeInput = (event) => {
         this.todoTitle = event.target.value;
     }
-    onKeyDown=(event:React.KeyboardEvent)=>{
-         const {onAddTodo}=this.props
+    onKeyDown = (event) => {
+        const { onAddTodo } = this.props
         if (event.keyCode === 13) {
             if (this.todoTitle == "") {
                 alert("you must write something");
             }
             else {
                 onAddTodo(this.todoTitle);
-                this.todoTitle=""
+                this.todoTitle = ""
             }
         }
     }

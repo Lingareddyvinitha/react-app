@@ -6,35 +6,31 @@ import EventModel from '../../stores/EventStore/EventModel'
 import { EventName, EventLocation } from "./styledComponents"
 
 
-type EventProps={
-    event:EventModel,
-    onDeleteEvent:(deletedEventId:number)=>void,
-}
 
 @observer
-class Event extends React.Component<EventProps> {
-    @observable isEditEvent:boolean;
-    @observable eventName:string;
-    @observable eventLocation:string;
+class Event extends React.Component {
+    @observable isEditEvent;
+    @observable eventName;
+    @observable eventLocation;
     constructor(props) {
         super(props)
         this.isEditEvent = false;
         this.eventName = props.event.name;
         this.eventLocation = props.event.location1;
     }
-    onDeleteEvent = ():void => {
+    onDeleteEvent = () => {
         const { onDeleteEvent, event } = this.props;
 
         onDeleteEvent(event.id);
 
     }
-    onChangeEventName = (event:any) => {
+    onChangeEventName = (event) => {
         this.eventName = event.target.value;
     }
-    onChangeEventLocation = (event:any) => {
+    onChangeEventLocation = (event) => {
         this.eventLocation = event.target.value;
     }
-    onUpdateEventDetails = ():void => {
+    onUpdateEventDetails = () => {
         if (this.isEditEvent === false) {
             this.isEditEvent = true;
         }

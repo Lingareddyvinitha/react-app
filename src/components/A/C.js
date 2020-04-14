@@ -1,11 +1,9 @@
 import React from "react"
 
-type CProps={
-    name:string
-}
-class C extends React.Component <CProps>{
+
+class C extends React.Component {
     render() {
-        const {name} = this.props
+        const { name } = this.props
         return (
             <div>
             <div>{name}</div>
