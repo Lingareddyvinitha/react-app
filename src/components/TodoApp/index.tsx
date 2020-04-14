@@ -1,24 +1,19 @@
 import React from 'react';
-import TodoList from './TodoList.js';
-import TodoFooter from './TodoFooter.js';
-import AddTodo from './AddTodo.js';
+import TodoList from './TodoList';
+import TodoFooter from './TodoFooter';
+import AddTodo from './AddTodo';
 import { observer } from 'mobx-react';
-import { reaction } from 'mobx';
 import todoAppStore from '../../stores/TodoAppStore'
+
 @observer
 class TodoApp extends React.Component {
-    onAddTodo = (title) => {
+    onAddTodo = (title:string) => {
         todoAppStore.onAddTodo(title)
     }
-    onRemoveTodo = (idOfRemoveTodo) => {
+    onRemoveTodo = (idOfRemoveTodo:number) => {
         todoAppStore.onRemoveTodo(idOfRemoveTodo);
     }
-    /*
-    todoReaction = reaction(
-        () => { return todoAppStore.todos.map(todo => todo.title) },
-        (title) => alert(typeof todoReaction))
-        */
-
+    
     render() {
         return (
             <div>
@@ -26,7 +21,6 @@ class TodoApp extends React.Component {
             <TodoList todos={todoAppStore.FilteredTodos} onRemoveTodo={this.onRemoveTodo}/>
             <TodoFooter 
             activeTodosCount={todoAppStore.ActiveTodosCount} 
-            selectedFilter={todoAppStore.selectedFilter}
             onChangeSelectedFilter={todoAppStore.onChangeSelectedFilter}
             onClearCompleted={todoAppStore.onClearCompleted}/>
             </div>

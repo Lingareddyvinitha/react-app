@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react'
+
 import CounterAppStore from '../../stores/CounterAppStore'
-import { Container, Heading, IncrementButton, Input, DecrementButton, Group } from './styledComponents.js'
+import { Container, Heading, IncrementButton, Input, DecrementButton, Group } from './styledComponents'
 const counterAppStore = new CounterAppStore()
 
 @observer

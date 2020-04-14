@@ -4,14 +4,26 @@ import React from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react'
 import './index.css'
-import ToDoItem from './todo.js'
+import ToDoItem from './todo'
+
+type objectType={
+    id:number
+    value:string
+    removeTodoFromList:(id:number)=>void
+    isCompleted:(status:boolean,id:number)=>void
+    updateTodoValueInList:(updatedTodoValue:string, id:number)=>void
+    checked:boolean
+    key:number
+    
+}
 @observer
 class TodosLists extends React.Component {
-    @observable TodoLists
-    @observable selectedFilter;
+    @observable TodoLists:Array<objectType>=[]
+    @observable selectedFilter:string;
+    duplicateTodoList:Array<objectType>
     constructor(props) {
         super(props);
-        this.duplicateTodoList = [];
+        this.duplicateTodoList=[];
         this.TodoLists = [];
         this.selectedFilter = "ALL";
     }
@@ -24,7 +36,7 @@ class TodosLists extends React.Component {
             else {
                 let id = Math.floor(Math.random() * 100)
                 event.target.value = "";
-                let object = { "id": id, "value": value, "removeTodoFromList": this.removeTodoFromList, "key": id, "isCompleted": this.isCompleted, "updateTodoValueInList": this.updateTodoValueInList, "checked": false };
+                let object:objectType = { "id": id, "value": value, "removeTodoFromList": this.removeTodoFromList, "key": id, "isCompleted": this.isCompleted, "updateTodoValueInList": this.updateTodoValueInList, "checked": false };
                 this.duplicateTodoList = [...this.duplicateTodoList, object]
                 this.TodoLists = [...this.TodoLists, object]
                 this.all();
@@ -32,26 +44,26 @@ class TodosLists extends React.Component {
         }
 
     }
-    removeTodoFromList = (idOfRemoveTodo) => {
-        this.duplicateTodoList = this.duplicateTodoList.filter((object) =>
-            object.id != idOfRemoveTodo
+    removeTodoFromList = (idOfRemoveTodo:number) => {
+        this.duplicateTodoList = this.duplicateTodoList.filter((todo) =>
+            todo.id != idOfRemoveTodo
         );
         this.TodoLists = [...this.duplicateTodoList]
 
     }
-    updateTodoValueInList = (updatedTodoValue, id) => {
-        this.duplicateTodoList = this.duplicateTodoList.filter((object) => {
-            if (object.id == id) {
-                object.value = updatedTodoValue;
+    updateTodoValueInList = (updatedTodoValue:string, id:number) => {
+        this.duplicateTodoList = this.duplicateTodoList.filter((todo) => {
+            if (todo.id == id) {
+                todo.value = updatedTodoValue;
             }
             return true;
         });
         this.TodoLists = [...this.duplicateTodoList];
     }
-    isCompleted = (state, id) => {
-        this.duplicateTodoList = this.duplicateTodoList.filter((object) => {
-            if (object.id == id) {
-                object.checked = state;
+    isCompleted = (state:boolean, id:number) => {
+        this.duplicateTodoList = this.duplicateTodoList.filter((todo) => {
+            if (todo.id == id) {
+                todo.checked = state;
             }
             return true;
         });
@@ -96,7 +108,9 @@ class TodosLists extends React.Component {
       <input type="text" name="inputtext" id="inputText" className="input-from-user" placeholder="What needs to be done"  onKeyDown={this.addtodoTotodoList} />
       <ul id="addingElementsAsList" className="ul-element">
       {this.TodoLists.map((object)=>
-         <ToDoItem key={object.key} value={object.value} removeTodoFromList={this.removeTodoFromList} id={object.id} editElementsInList={object.editElementsInList} isCompleted={object.isCompleted}  updateTodoValueInList={object.updateTodoValueInList} checked = {object.checked}               />
+         <ToDoItem key={object.key} value={object.value} 
+         removeTodoFromList={this.removeTodoFromList} id={object.id}
+         isCompleted={object.isCompleted}  updateTodoValueInList={object.updateTodoValueInList} checked = {object.checked}               />
       )}
       </ul>
       <div className="total-count" id="footer">

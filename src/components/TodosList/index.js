@@ -1,20 +1,15 @@
 /*global React*/
 /*global ReactDOM*/
 import React from 'react';
-import { observer } from 'mobx-react'
+
 import './index.css'
-import ToDoItem from './todo.js'
-import themeStore from '../../stores/ThemeStore'
-import ThemeModel from '../../stores/ThemeStore/ThemeModel'
-@observer
+import ToDoItem from './todo'
+
 class TodosLists extends React.Component {
     constructor(props) {
         super(props);
         this.duplicateTodoList = [];
         this.state = { TodoLists: [] }
-    }
-    getCurrentTime() {
-        return themeStore.selectedThemes;
     }
     addCarToCarsList = (event) => {
         if (event.keyCode === 13) {
@@ -89,7 +84,7 @@ class TodosLists extends React.Component {
             TodoLists: this.duplicateTodoList
         })
     }
-    /*
+
     render() {
         let count = 0;
         this.state.TodoLists.forEach((object) => {
@@ -121,20 +116,7 @@ class TodosLists extends React.Component {
       </div>
       </div>
         );
-    }*/
-    render() {
-        const array = (this.getCurrentTime());
-        return (
-            <div>{array.map(element=>
-            <div>
-            <div>{element.object.time}</div>
-            <button onClick={element.ToggleTheme}>{element.theme}</button>
-            </div>
-            )}</div>
-        )
     }
-
-
 }
 //ReactDOM.render(<ToDoList />, document.getElementById('root'));
 

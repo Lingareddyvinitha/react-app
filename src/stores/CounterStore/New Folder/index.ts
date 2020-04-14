@@ -1,9 +1,6 @@
 import { observable, action } from 'mobx';
 class EmojiThemeStore {
     @observable selectedTheme
-    constructor() {
-        this.count =
-    }
     static themeOptions = {
         light: {
             id: "0",

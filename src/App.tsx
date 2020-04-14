@@ -1,28 +1,15 @@
 import React from "react";
-//import { observable } from 'mobx'
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+}
+from "react-router-dom";
 
 import HomePage from "./components/HomePage";
 import Page1 from "./components/Page1";
-
 import "./App.css";
-/*
-const App = () => {
-  return (
-    <Router basename={process.env.PUBLIC_URL}>
-      <Switch>
-        <Route exact path="/page-1">
-          <Page1 />
-        </Route>
-        <Route path="/">
-          <HomePage />
-        </Route>
-      </Switch>
-    </Router>
-  );
-};
-*/
-
 import Home from './components/Home'
 import TodosList from './components/TodosList'
 import CountryList from './components/CountryList'
@@ -42,13 +29,7 @@ import MobxTodoApp from './components/MobxTodoApp'
 import TodoApp from './components/TodoApp'
 import EventsApp from './components/EventsApp'
 import A from './components/A'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-}
-from "react-router-dom";
+
 //@observer
 
 

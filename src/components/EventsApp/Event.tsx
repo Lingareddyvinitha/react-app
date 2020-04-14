@@ -1,31 +1,40 @@
 import React from "react"
-import { EventName, EventLocation } from "./styledComponents.js"
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
+
+import EventModel from '../../stores/EventStore/EventModel'
+import { EventName, EventLocation } from "./styledComponents"
+
+
+type EventProps={
+    event:EventModel,
+    onDeleteEvent:(deletedEventId:number)=>void,
+}
+
 @observer
-class Event extends React.Component {
-    @observable isEditEvent;
-    @observable eventName;
-    @observable eventLocation;
+class Event extends React.Component<EventProps> {
+    @observable isEditEvent:boolean;
+    @observable eventName:string;
+    @observable eventLocation:string;
     constructor(props) {
         super(props)
         this.isEditEvent = false;
-        this.eventName = this.props.event.name;
-        this.eventLocation = this.props.event.location1;
+        this.eventName = props.event.name;
+        this.eventLocation = props.event.location1;
     }
-    onDeleteEvent = () => {
+    onDeleteEvent = ():void => {
         const { onDeleteEvent, event } = this.props;
 
         onDeleteEvent(event.id);
 
     }
-    onChangeEventName = (event) => {
+    onChangeEventName = (event:any) => {
         this.eventName = event.target.value;
     }
-    onChangeEventLocation = (event) => {
+    onChangeEventLocation = (event:any) => {
         this.eventLocation = event.target.value;
     }
-    onUpdateEventDetails = (name, location1) => {
+    onUpdateEventDetails = ():void => {
         if (this.isEditEvent === false) {
             this.isEditEvent = true;
         }

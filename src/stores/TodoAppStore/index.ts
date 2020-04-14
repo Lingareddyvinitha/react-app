@@ -1,35 +1,37 @@
 import { observable, action, computed, reaction, toJS } from 'mobx';
-import { observer } from 'mobx-react';
+
+
 import TodoModel from './TodoModel'
+import {objectType} from './TodoModel'
+
 class TodoAppStore {
 
-    id;
-    @observable todos = [];
-    @observable selectedFilter;
+    @observable todos:Array<TodoModel> = [];
+    @observable selectedFilter:string;
     constructor() {
         this.selectedFilter = "ALL";
 
     }
     @action.bound
-    onAddTodo(title) {
-        const todoObject = {
+    onAddTodo(title:string) {
+        const todoObject:objectType = {
             id: Math.floor(Math.random() * 100),
             title,
             isCompleted: false
         }
-        const todoModel = new TodoModel(todoObject);
-        this.todos.push(todoModel)
+        const todoModel:TodoModel = new TodoModel(todoObject);
+        this.todos.push(todoModel);
         this.selectedFilter = "ALL"
 
     }
     @action.bound
-    onRemoveTodo(idOfRemoveTodo) {
+    onRemoveTodo(idOfRemoveTodo:number) {
         this.todos = this.todos.filter((todo) =>
             todo.id != idOfRemoveTodo
         );
     }
     @action.bound
-    onChangeSelectedFilter(state) {
+    onChangeSelectedFilter(state:string) {
         this.selectedFilter = state
 
     }

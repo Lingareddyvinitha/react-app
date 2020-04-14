@@ -1,6 +1,13 @@
 import React from 'react';
-class Todo extends React.Component {
-    onCompleteTodo = (event) => {
+import TodoModel from '../../stores/TodoAppStore/TodoModel'
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+type TodoProps={
+    todo:TodoModel
+    onRemoveTodo:(id:number)=>void
+}
+class Todo extends React.Component <TodoProps>{
+    onCompleteTodo = (event:any) => {
         const { todo } = this.props;
         todo.onCompleteTodo(event.target.checked);
     }
@@ -9,7 +16,7 @@ class Todo extends React.Component {
         const { todo } = this.props
         onRemoveTodo(todo.id);
     }
-    onUpdateTodoTitle = (event) => {
+    onUpdateTodoTitle = (event:InputEvent) => {
         const { todo } = this.props;
         todo.onUpdateTodoTitle(event.target.value);
     }

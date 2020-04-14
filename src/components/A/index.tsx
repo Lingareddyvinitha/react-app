@@ -1,14 +1,14 @@
 import React from "react"
-import { Provider, observer } from "mobx-react"
-import B from './B.js'
+import { Provider } from "mobx-react"
+
+import B from './B'
 
 
-class A extends React.Component {
+class A extends React.Component{
     render() {
         return (
             <div>
-            <Provider temp={'value'}>
-            
+            <Provider temp='value'>
             <B temp="this"/>
             </Provider>
             

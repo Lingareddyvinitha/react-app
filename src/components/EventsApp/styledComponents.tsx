@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
+
 const Event = styled.form `${tw `flex flex-col justify-start items-center`}`
 
 const Name = styled.input `${tw `border-black border-solid  border-2`}`
