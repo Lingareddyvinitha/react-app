@@ -29,6 +29,7 @@ import MobxTodoApp from './components/MobxTodoApp'
 import TodoApp from './components/TodoApp'
 import EventsApp from './components/EventsApp'
 import A from './components/A'
+import GridMemoryGame from './components/GridGame'
 
 //@observer
 
@@ -127,6 +128,7 @@ class App extends React.Component {
           <Route path="/mobx-store-todo-app" children={<TodoApp />} />
           <Route path="/events-app" children={<EventsApp />} />
           <Route path="/a" children={<A />} />
+          <Route path="/grid-game" children={<GridMemoryGame />} />
           <Route path="/">
             <Home />
           </Route>
@@ -138,28 +140,4 @@ class App extends React.Component {
   }
 
 }
-export default (App)
-/*
-export default function App() {
-  return (
-    <Router >
-    <div>
-        <Switch>
-          <Route path="/TodosList">
-            <TodosList />
-          </Route>
-          <Route exact path="/CountryList">
-            <CountryList />
-          </Route>
-          <Route exact path={`/CountryList/:countryId`}>
-            <CovidGraphs />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-          
-        </Switch>
-      </div> 
-    </Router>
-  );
-}*/
+export default App
