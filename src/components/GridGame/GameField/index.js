@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-
+import levelData from '../../../stores/GridStore/level.json'
 import Cell from '../Cell'
 import { GameArea } from './styledComponents'
 
@@ -12,15 +12,16 @@ class GameField extends React.Component {
 
     }
     renderCells = () => {
-        const { cells, onCellClick } = this.props
+        const { cells, onCellClick, level } = this.props
         return (cells.map(cell => {
-            return <Cell key={cell.id} cell={cell} onCellClick={onCellClick}/>
+            return <Cell key={cell.id} cell={cell} onCellClick={onCellClick} level={level}/>
         }))
     }
 
     render() {
+        const { level } = this.props
         return (
-            <GameArea>
+            <GameArea width={levelData[level].gridWidth}>
             { this.renderCells() }
             </GameArea>
         )

@@ -8,6 +8,7 @@ let shuffle = require('shuffle-array')
 class GridStore {
     @observable currentLevelGridCells
     @observable level
+    @observable topLevel
     @observable isGameCompleted
     constructor() {
         this.currentLevelGridCells = []
@@ -21,14 +22,24 @@ class GridStore {
     onCellClick(id) {
 
         const getClickedInfo = this.currentLevelGridCells.find(cell => cell.id === id)
-        console.log(getClickedInfo)
+        if (getClickedInfo.isHidden === true) {
+            this.incrementSelectedCellsCount();
+            if (this.selectedCellsCount === levelData[this.level].hiddenCellCount) {
+                this.goToNextLevelAndUpdateCells()
+            }
+
+        }
+        else {
+            this.setTopLevel()
+            this.resetGame();
+        }
 
 
     }
 
-    @action
+    @action.bound
     setGridCells() {
-
+        this.currentLevelGridCells = []
         let array = []
         for (let i = 0; i < levelData[this.level].gridSize ** 2; i++) {
             array.push(Math.random().toString())
@@ -54,38 +65,50 @@ class GridStore {
     }
 
 
-    @action
+    @action.bound
     goToNextLevelAndUpdateCells() {
-
+        this.level++;
+        this.resetSelectedCellsCount()
+        this.setGridCells()
     }
 
-    @action
+    @action.bound
     goToInitialLevelAndUpdateCells() {
-
+        this.setGridCells()
     }
 
-    @action
+    @action.bound
     resetSelectedCellsCount() {
-
+        this.selectedCellsCount = 0
     }
 
-    @action
+    @action.bound
     incrementSelectedCellsCount() {
-
+        this.selectedCellsCount++
     }
 
-    @action
+    @action.bound
     onPlayAgainClick() {
-
+        this.setTopLevel();
+        this.resetGame()
     }
 
-    @action
+    @action.bound
     resetGame() {
+        this.currentLevelGridCells = []
+        this.level = 0
+        this.isGameCompleted = false
+        this.selectedCellsCount = 0
+        this.goToInitialLevelAndUpdateCells()
 
     }
 
-    @action
+    @action.bound
     setTopLevel() {
+        if (this.level > this.topLevel) {
+            this.topLevel = this.level
+        }
+
 
     }
 

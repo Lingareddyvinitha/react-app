@@ -10,21 +10,26 @@ import {
 }
 from './styledComponent'
 
+//@inject('selectedTheme')
 @observer
 class Header extends React.Component {
     constructor(props) {
         super(props)
 
     }
+    onClickChangeTheme = () => {
+        const { onClickChangeTheme, selectedTheme } = this.props
+        onClickChangeTheme(selectedTheme.id)
+    }
     render() {
-        const { level, topLevel } = this.props
+        const { level, topLevel, selectedTheme } = this.props
         return (
             <Container>
-            <TopLevel>TopLevel:{level}</TopLevel>
+            <TopLevel>TopLevel:{topLevel}</TopLevel>
             <Group>
-            <Level>Level:{topLevel}</Level>
-            <ThemeButton>
-            button
+            <Level>Level:{level}</Level>
+            <ThemeButton onClick={this.onClickChangeTheme}>
+            {selectedTheme.name}
             </ThemeButton>
             </Group>
             </Container>
