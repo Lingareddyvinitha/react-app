@@ -36,8 +36,10 @@ ${props =>({backgroundColor:props.theme,
                 color:props.textColor})}`;;
 
 const Card = styled.div `${tw `flex items-center justify-center flex-col w-64 h-64 m-4 shadow-custom`}
-${props =>({backgroundColor:props.theme,
-                color:props.textColor})}`;;
+${props =>({
+    backgroundColor: props.theme,
+    color: props.textColor
+})}`;;
 
 const EmojiImg = styled.img `${tw`w-40 border-none`}`
 

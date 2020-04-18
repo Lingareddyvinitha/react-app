@@ -1,11 +1,13 @@
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
-const Grid = styled.div `${tw `bg-gray-600 w-20	 h-20 m-1`}
-${props=>(props.colored)? tw `bg-green-900` : tw `bg-gray-600`}
-${props=>(props.clicked)&& tw `bg-green-900` }
-${props=>({width:props.width,
-height:props.width})}`
+const Grid = styled.button `${tw `w-20 h-20 m-1   focus:outline-none`}
+transition: background-color 0.5s;
+${props=>({width:props.width,height:props.width})}
+${props=>(props.colored)? ({backgroundColor: props.selectedTheme.hiddenCellColor}) :
+(props.clicked)?
+(props.isHidden)?({backgroundColor:props.selectedTheme.hiddenCellColor}):({backgroundColor:props.selectedTheme.wrongCell}):
+({backgroundColor: props.selectedTheme.cellBackgroundColor})}`
 
 
 export { Grid }

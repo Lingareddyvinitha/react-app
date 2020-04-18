@@ -1,20 +1,17 @@
 import React from 'react'
-import { observer } from 'mobx-react'
 
 import levelData from '../../../stores/GridStore/level.json'
 import Cell from '../Cell'
 import { GameArea } from './styledComponents'
 
-@observer
 class GameField extends React.Component {
-    constructor(props) {
-        super(props)
 
-    }
     renderCells = () => {
-        const { cells, onCellClick, level } = this.props
+        const { cells, onCellClick, level, selectedTheme } = this.props
+        let setTime = (levelData[level].gridSize) * 1000
         return (cells.map(cell => {
-            return <Cell key={cell.id} cell={cell} onCellClick={onCellClick} level={level}/>
+            return <Cell key={cell.id} cell={cell} onCellClick={onCellClick} 
+            level={level}  selectedTheme={selectedTheme} setTime={setTime}/>
         }))
     }
 

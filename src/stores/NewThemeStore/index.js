@@ -7,26 +7,27 @@ class NewThemeStore {
             id: "0",
             name: "Mode: Light",
             gridGamePageBackgroundColor: "#f7fafc",
-            cellBackgroundColor: "#234e52",
-            hiddenCellColor: "#38a169"
+            cellBackgroundColor: "#4a5568",
+            hiddenCellColor: "#38a169",
+            textColor: "black",
+            wrongCell: "red"
         },
         dark: {
             id: "1",
             name: "Mode: Dark",
             gridGamePageBackgroundColor: "#1a202c",
             cellBackgroundColor: "#2a4365",
-            hiddenCellColor: "#90cdf4"
+            hiddenCellColor: "#90cdf4",
+            textColor: "white",
+            wrongCell: "red"
         }
     }
     @action.bound
     onClickChangeTheme(id) {
-        alert(typeof id)
         if (id === "1") {
             this.selectedThemeForGridGame = NewThemeStore.ThemeOptions.light
-            //console.log(NewThemeStore.ThemeOptions.light)
         }
         else {
-            //alert("light")
             this.selectedThemeForGridGame = NewThemeStore.ThemeOptions.dark
         }
     }

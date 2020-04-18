@@ -7,37 +7,49 @@ import { Grid } from './styledCompoenent'
 
 @observer
 class Cell extends React.Component {
+
     @observable shouldShowHiddenCells
     @observable isClickedOnCell
+    @observable istimerCompletedforDisplayingHiddenCells
 
     constructor(props) {
         super(props)
         const { cell } = this.props
         this.shouldShowHiddenCells = cell.isHidden
         this.isClickedOnCell = false
-
-
+        this.istimerCompletedforDisplayingHiddenCells = false
     }
-    async componentDidMount() {
-        const { level } = this.props;
-        let setTime = (levelData[level].gridSize) * 1000
+
+    componentDidMount() {
+        const { setTime } = this.props;
+
 
         setTimeout(() => {
             this.shouldShowHiddenCells = false;
+            this.istimerCompletedforDisplayingHiddenCells = true
         }, setTime)
     }
 
     onCellClick = () => {
+
+        if (!this.isClickedOnCell) {
+            const { onCellClick, cell } = this.props
+            onCellClick(cell.isHidden, cell.id);
+        }
         this.isClickedOnCell = true
-        const { onCellClick, cell } = this.props
-        onCellClick(cell.id);
     }
+
     render() {
-        const { level } = this.props
+        const { level, selectedTheme, cell } = this.props
         return (
-            <Grid onClick={this.onCellClick} colored={this.shouldShowHiddenCells} clicked={this.isClickedOnCell}
-            width={levelData[level].cellWidth}>
-            </Grid>
+            <Grid onClick={this.onCellClick} 
+            colored={this.shouldShowHiddenCells} 
+            clicked={this.isClickedOnCell}
+            width={levelData[level].cellWidth}
+            selectedTheme={selectedTheme}
+            isHidden={cell.isHidden}
+            disabled={!this.istimerCompletedforDisplayingHiddenCells}
+            ></Grid>
         )
     }
 

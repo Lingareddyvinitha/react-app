@@ -22,11 +22,5 @@
         "hiddenCellCount": 6,
         "gridWidth": 360,
         "cellWidth": 50
-    },
-    {
-        "gridSize": 7,
-        "hiddenCellCount": 7,
-        "gridWidth": 420,
-        "width": 50
     }
 ]
