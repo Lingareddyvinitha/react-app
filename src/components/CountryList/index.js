@@ -59,7 +59,6 @@ class CountryList extends React.Component {
 
     }
     lightOrDarkMode = () => {
-        alert("list")
         this.setState({ mode: !this.state.mode });
     }
 

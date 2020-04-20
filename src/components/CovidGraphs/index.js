@@ -1,6 +1,8 @@
 /*global fetch*/
 import React from 'react';
 import { observer } from 'mobx-react'
+import { withRouter } from "react-router-dom";
+
 import Countries from './Countries.js';
 import './index.css';
 import loaderImg from './loader-icon.svg';
@@ -31,12 +33,13 @@ class DashBoard extends React.Component {
         if (countries.length > 0) {
             this.countriesBySearchText = countries;
             this.countriesBySelectedRegion = countries;
-            this.getRegionOptions(countries);
+            //this.getRegionOptions(countries);
             this.setState({ countries: countries });
         }
         else {
             this.setState({ errorMessage: countries });
         }
+
     }
     getCountries = async(countries) => {
         try {
@@ -120,4 +123,4 @@ class DashBoard extends React.Component {
 
     }
 }
-export default DashBoard;
+export default withRouter(DashBoard);

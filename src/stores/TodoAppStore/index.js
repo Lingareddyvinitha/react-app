@@ -39,9 +39,11 @@ class TodoAppStore {
     onClearCompleted() {
         this.todos = this.todos.filter(todo => !todo.isCompleted)
     }
+    /*
     todoReaction = reaction(
         () => { return toJS(this.todos).length },
         (length) => alert(length))
+        */
 
     @computed get ActiveTodosCount() {
         return this.todos.filter(todo => !todo.isCompleted).length;
@@ -58,6 +60,10 @@ class TodoAppStore {
         else {
             return this.todos.filter(todo => todo.isCompleted)
         }
+    }
+    
+    @computed get todosLength(){
+        return this.todos.filter(todo=>todo).length
     }
 
     todoSuccessReaction = reaction(

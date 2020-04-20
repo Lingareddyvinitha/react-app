@@ -1,19 +1,22 @@
 import React from "react"
-import { Provider } from "mobx-react"
+import { observable } from 'mobx'
+import { Provider, observer } from "mobx-react"
 
 import B from './B'
 
-
+@observer
 class A extends React.Component {
 
+    @observable count = 1
+    increment = () => {
+        this.count++
+    }
     render() {
-        setTimeout(
-            function() { alert("hi") }, 500)
-        // console.log(x())
         return (
             <div>
-            <Provider temp='value'>
-            <B temp="this"/>
+            
+            <Provider increment={this.increment}>
+            <B count={this.count}/>
             </Provider>
             
             </div>

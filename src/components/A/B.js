@@ -4,19 +4,23 @@ import { observer } from "mobx-react"
 import { inject } from "mobx-react"
 
 import C from './C'
-@inject('temp')
+@inject('increment')
 @observer
 class B extends React.Component {
     @observable name = "";
     onChangeName = (event) => {
         this.name = event.target.value;
     }
+    increment = () => {
+        const { increment } = this.props
+        increment()
+    }
     render() {
-        const { temp } = this.props
-        console.log(temp)
+        const { count } = this.props
         return (
             <div>
-            <div>{temp}</div>
+            <div>{count}</div>
+            <button onClick={this.increment}>+</button>
             <input value={this.name} onChange={this.onChangeName} />
             <C name="props"/>
             </div>

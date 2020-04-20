@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import { FooterContainer } from './styledComponent'
 
 class TodoFilter extends React.Component {
     onChangeSelectedFilter = (event) => {
@@ -14,12 +14,12 @@ class TodoFilter extends React.Component {
     }
     render() {
         return (
-            <div>
+            <FooterContainer>
             <button onClick={this.onChangeSelectedFilter} value="ALL">ALL</button>
             <button onClick={this.onChangeSelectedFilter} value="ACTIVE">ACTIVE</button>
             <button onClick={this.onChangeSelectedFilter} value="COMPLETED">COMPLETED</button>
             <button onClick={this.onClearCompleted}>CLEAR COMPLETED</button>
-            </div>
+            </FooterContainer>
         )
     }
 }

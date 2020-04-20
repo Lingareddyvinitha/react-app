@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 
 import TodoModel from '../../stores/TodoAppStore/TodoModel'
 import Todo from './Todo'
+import { TodoContainer } from './styledComponent'
 @observer
 class TodoList extends React.Component {
     onRemoveTodo = (idOfRemoveTodo) => {
@@ -17,7 +18,9 @@ class TodoList extends React.Component {
     render() {
 
         return (
-            this.renderTodo()
+            <TodoContainer>
+            {this.renderTodo()}
+            </TodoContainer>
         )
     }
 }

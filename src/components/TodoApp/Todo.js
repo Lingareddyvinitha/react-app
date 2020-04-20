@@ -17,15 +17,6 @@ class Todo extends React.Component {
         todo.onUpdateTodoTitle(event.target.value);
     }
     render() {
-        let myShows = ['Bones', 'Psych', 'Big Bang Theory', 'Mad Men',
-            'Breaking Bad', 'Modern Family', 'Game of Thrones', 'Dexter'
-        ];
-        // let show = myShows[Math.floor(Math.random() * myShows.length)];
-        const shuffled = myShows.sort(() => 0.5 - Math.random());
-
-        // Get sub-array of first n elements after shuffled
-        let selected = shuffled.slice(0, 3);
-        console.log(selected)
         const { todo } = this.props
         return (
             <div>

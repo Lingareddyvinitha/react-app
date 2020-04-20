@@ -125,7 +125,7 @@ class App extends React.Component {
           <Route path="/EmojiGame" children={<EmojiGame />} />
           <Route path="/counter-app" children={<CounterApp />} />
           <Route path="/mobx-todo-app" children={<MobxTodoApp />} />
-          <Route path="/mobx-store-todo-app" children={<TodoApp />} />
+          <Route exact path="/mobx-store-todo-app" children={<TodoApp />} />
           <Route path="/events-app" children={<EventsApp />} />
           <Route path="/a" children={<A />} />
           <Route path="/grid-game" children={<GridMemoryGame />} />
