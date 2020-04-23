@@ -33,6 +33,7 @@ import A from './components/A'
 import GridMemoryGame from './components/GridGame'
 import UsersPage from './components/UsersPage'
 import TodoAppWithService from './components/TodoAppWithService'
+import LoginPage from './components/LoginPage'
 import stores from './stores'
 
 //@observer
@@ -136,8 +137,9 @@ class App extends React.Component {
           <Route path="/grid-game" children={<GridMemoryGame />} />
           <Route path="/users-page" component={UsersPage}/>
           <Route path="/todo-page" component={TodoAppWithService}/>
+          <Route path="/login-page" component={LoginPage}/>
           <Route path="/">
-            <Home />
+            <Home/>
           </Route>
         </Switch>
         </div>

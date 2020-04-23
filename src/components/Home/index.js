@@ -1,10 +1,31 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react'
 import {
-  Link
+  Link,
+  Redirect
 }
 from "react-router-dom";
+@inject('loginStore')
+@observer
 class Home extends React.Component {
+  getLoginStore = () => {
+    return this.props.loginStore
+  }
+  gotoTodoScreenIfLoggedIn = () => {
+    return (
+      <Redirect
+      to={{
+      pathname:'/grid-game'
+      }}
+      />
+    )
+  }
   render() {
+    const { token } = this.getLoginStore()
+    console.log(token)
+    if (token === 123) {
+      return this.gotoTodoScreenIfLoggedIn()
+    }
     return (
       <div>
               <nav>
@@ -53,6 +74,9 @@ class Home extends React.Component {
                   </li>
                   <li>
                     <Link to="/todo-page">TodoAppWithService</Link>
+                  </li>
+                  <li>
+                    <Link to="/login-page">LoginPage</Link>
                   </li>
                 </ul>
               </nav>

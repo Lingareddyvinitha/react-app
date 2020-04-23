@@ -28,7 +28,7 @@ class CountryDetails extends React.Component {
     }
     pathChanges = (border) => {
         let path = `/DashBoard/Details/:${border}`
-        this.props.history.push(path);
+        this.props.history.replace(path);
     }
     countryAlpha3CodeChange(border) {
         this.pathChanges(border)

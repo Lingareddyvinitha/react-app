@@ -98,26 +98,17 @@ class TodoStore {
         (length) => {
             if (length === 0) {
                 alert("all Completed")
-                //reaction.dispose()
-                //this.todoSuccessReaction()
             }
         }, { delay: 500 }
     )
-    disposer = autorun(() => {
-        console.log('autorun', this.todosLength)
-    })
 
-    disposer1 = reaction(
-        () => { return this.todosLength },
-        (length) => {
-            console.log('reaction', length)
-        })
 
 
 
     @action.bound
     clearStore() {
         this.init()
+        this.todoSuccessReaction()
     }
 }
 
