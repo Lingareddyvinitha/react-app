@@ -1,4 +1,5 @@
 import React from "react";
+import { Provider } from 'mobx-react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -30,6 +31,9 @@ import TodoApp from './components/TodoApp'
 import EventsApp from './components/EventsApp'
 import A from './components/A'
 import GridMemoryGame from './components/GridGame'
+import UsersPage from './components/UsersPage'
+import TodoAppWithService from './components/TodoAppWithService'
+import stores from './stores'
 
 //@observer
 
@@ -80,6 +84,7 @@ class App extends React.Component {
     let statesList = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
     let citiesList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"]
     return (
+      <Provider {...stores}>
       <div>
       <Router basename={process.env.PUBLIC_URL}>
       <div>
@@ -129,6 +134,8 @@ class App extends React.Component {
           <Route path="/events-app" children={<EventsApp />} />
           <Route path="/a" children={<A />} />
           <Route path="/grid-game" children={<GridMemoryGame />} />
+          <Route path="/users-page" component={UsersPage}/>
+          <Route path="/todo-page" component={TodoAppWithService}/>
           <Route path="/">
             <Home />
           </Route>
@@ -136,6 +143,7 @@ class App extends React.Component {
         </div>
     </Router>
     </div>
+    </Provider>
     )
   }
 

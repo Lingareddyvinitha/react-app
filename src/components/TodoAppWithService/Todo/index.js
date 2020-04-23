@@ -1,6 +1,8 @@
 import React from 'react';
+import { observer } from 'mobx-react'
 
-
+import { Container, ToDo, CheckBox, Delete } from './styledComponent'
+@observer
 class Todo extends React.Component {
     onCompleteTodo = (event) => {
         const { todo } = this.props;
@@ -18,11 +20,11 @@ class Todo extends React.Component {
     render() {
         const { todo } = this.props
         return (
-            <div>
-            <input  type="checkbox" onClick={this.onCompleteTodo} defaultChecked={todo.isCompleted}></input>
-            <input defaultValue={todo.title} onChange={this.onUpdateTodoTitle} />
-            <span onClick={this.onRemoveTodo}>×</span>
-            </div>
+            <Container>
+            <CheckBox  type="checkbox" onClick={this.onCompleteTodo} defaultChecked={todo.isCompleted}></CheckBox>
+            <ToDo defaultValue={todo.title} onChange={this.onUpdateTodoTitle}></ToDo>
+            <Delete onClick={this.onRemoveTodo}>×</Delete>
+            </Container>
         )
     }
 }

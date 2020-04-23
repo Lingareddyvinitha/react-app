@@ -61,9 +61,9 @@ class TodoAppStore {
             return this.todos.filter(todo => todo.isCompleted)
         }
     }
-    
-    @computed get todosLength(){
-        return this.todos.filter(todo=>todo).length
+
+    @computed get todosLength() {
+        return this.todos.filter(todo => todo).length
     }
 
     todoSuccessReaction = reaction(

@@ -48,6 +48,12 @@ class Home extends React.Component {
                   <li>
                     <Link to="/grid-game">GridMemoryGame</Link>
                   </li>
+                  <li>
+                    <Link to="/users-page">UsersPage</Link>
+                  </li>
+                  <li>
+                    <Link to="/todo-page">TodoAppWithService</Link>
+                  </li>
                 </ul>
               </nav>
                   </div>
