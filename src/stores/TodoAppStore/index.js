@@ -15,7 +15,7 @@ class TodoAppStore {
     @action.bound
     onAddTodo(title) {
         const todoObject = {
-            id: Math.floor(Math.random() * 100),
+            id:Math.floor(Math.random() * 100),
             title,
             isCompleted: false
         }
@@ -61,9 +61,9 @@ class TodoAppStore {
             return this.todos.filter(todo => todo.isCompleted)
         }
     }
-
-    @computed get todosLength() {
-        return this.todos.filter(todo => todo).length
+    
+    @computed get todosLength(){
+        return this.todos.filter(todo=>todo).length
     }
 
     todoSuccessReaction = reaction(

@@ -35,6 +35,8 @@ import UsersPage from './components/UsersPage'
 import TodoAppWithService from './components/TodoAppWithService'
 import LoginPage from './components/LoginPage'
 import stores from './stores'
+import AuthRoutes from './Authentication/routes/routes.js'
+
 
 //@observer
 
@@ -90,11 +92,7 @@ class App extends React.Component {
       <Router basename={process.env.PUBLIC_URL}>
       <div>
         <Switch>
-        {/*
-        <Route path="/counter-page">
-            <CounterPage />
-          </Route>
-        */}
+        {AuthRoutes}
           <Route path="/TodosList">
             <TodosList />
           </Route>
@@ -146,6 +144,7 @@ class App extends React.Component {
     </Router>
     </div>
     </Provider>
+
     )
   }
 

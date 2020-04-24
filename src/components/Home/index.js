@@ -5,6 +5,8 @@ import {
   Redirect
 }
 from "react-router-dom";
+import { getAccessToken } from '../../utils/StorageUtils'
+
 @inject('loginStore')
 @observer
 class Home extends React.Component {
@@ -21,9 +23,9 @@ class Home extends React.Component {
     )
   }
   render() {
-    const { token } = this.getLoginStore()
+    let token = getAccessToken()
     console.log(token)
-    if (token === 123) {
+    if (token === '12345') {
       return this.gotoTodoScreenIfLoggedIn()
     }
     return (
@@ -77,6 +79,9 @@ class Home extends React.Component {
                   </li>
                   <li>
                     <Link to="/login-page">LoginPage</Link>
+                  </li>
+                  <li>
+                    <Link to="/sign-in-page">SignInPage</Link>
                   </li>
                 </ul>
               </nav>

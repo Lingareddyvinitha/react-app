@@ -1,15 +1,19 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { withRouter } from "react-router-dom";
+import { setAccessToken, clearUserSession } from '../../utils/StorageUtils'
 
 @inject('loginStore')
 @observer
 class LoginPage extends React.Component {
+    componentWillUnmount() {
+        return clearUserSession()
+    }
     getLoginStore = () => {
         return this.props.loginStore
     }
     createToken = () => {
-        this.getLoginStore().createToken()
+        setAccessToken(12345)
         this.navigatePage()
     }
     navigatePage = () => {
