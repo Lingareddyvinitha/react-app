@@ -18,6 +18,7 @@ class ProductStore {
     init() {
         this.getProductListAPIStatus = API_INITIAL
         this.productList = []
+        this.sizeFilter = []
         this.sortBy = "SELECT"
     }
 
@@ -70,20 +71,50 @@ class ProductStore {
     }
 
     @action.bound
-    onSelectSize() {
-        return
+    onSelectSize(size, addOrDelete) {
+        if (addOrDelete === 'add') {
+            this.sizeFilter.push(size)
+        }
+        else {
+            this.sizeFilter.pop(size)
+        }
     }
 
     @computed get product() {
-        return
+        let products = [];
+        if (this.sizeFilter.length === 0) {
+            products = [...this.productList]
+        }
+        else {
+            this.sizeFilter.forEach(size => {
+                this.productList.forEach(product => {
+                    if (product.availableSizes.includes(size)) {
+                        if (products.indexOf(product) === -1) {
+                            products = [...products, product]
+                        }
+                    }
+
+                })
+            })
+        }
+        switch (this.sortBy) {
+            case 'ASCENDING':
+                return products.sort((a, b) => (a.price - b.price))
+            case 'DESCENDING':
+                return products.sort((a, b) => (b.price - a.price))
+            default:
+                return products
+
+
+        }
     }
 
     @computed get sortedAndFilteredProducts() {
-        return
+        return this.product
     }
 
     @computed get totalNoOfProductsDisplayed() {
-        return
+        return this.sortedAndFilteredProducts.length
     }
 
 

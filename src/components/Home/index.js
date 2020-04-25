@@ -5,7 +5,7 @@ import {
   Redirect
 }
 from "react-router-dom";
-import { getAccessToken } from '../../utils/StorageUtils'
+import { getAccessToken, clearUserSession } from '../../utils/StorageUtils'
 
 @inject('loginStore')
 @observer
@@ -24,8 +24,7 @@ class Home extends React.Component {
   }
   render() {
     let token = getAccessToken()
-    console.log(token)
-    if (token === '12345') {
+    if (token === "f5af9f51-07e6-4332-8f1a-c0c11c1e343") {
       return this.gotoTodoScreenIfLoggedIn()
     }
     return (

@@ -13,11 +13,14 @@ const SignIn = styled.button `${tw `h-12 w-48 bg-gray-900 text-white rounded-md 
 
 const Heading = styled.div `${tw `font-bold m-2 self-start`}`
 
+const ErrorMessage = styled.span `${tw `text-red-600`}`
+
 export {
     Container,
     SignInContainer,
     UserName,
     Password,
     SignIn,
-    Heading
+    Heading,
+    ErrorMessage
 }

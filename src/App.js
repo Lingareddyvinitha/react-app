@@ -35,7 +35,8 @@ import UsersPage from './components/UsersPage'
 import TodoAppWithService from './components/TodoAppWithService'
 import LoginPage from './components/LoginPage'
 import stores from './stores'
-import AuthRoutes from './Authentication/routes/routes.js'
+import AuthRoutes from './Authentication/routes'
+import ProductsPageRoutes from './E-CommerceApp/routes/ProductsPageRoutes'
 
 
 //@observer
@@ -93,6 +94,7 @@ class App extends React.Component {
       <div>
         <Switch>
         {AuthRoutes}
+        {ProductsPageRoutes}
           <Route path="/TodosList">
             <TodosList />
           </Route>
