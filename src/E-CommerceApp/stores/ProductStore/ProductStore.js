@@ -2,6 +2,7 @@ import { observable, action, computed, reaction, autorun } from 'mobx'
 import { API_INITIAL, API_FETCHING, API_SUCCESS, API_FAILED } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import ProductModel from './models/ProductModel'
+import CartStore from '../CartStore'
 class ProductStore {
     @observable getProductListAPIStatus
     @observable getProductListAPIError
@@ -76,7 +77,7 @@ class ProductStore {
             this.sizeFilter.push(size)
         }
         else {
-            this.sizeFilter.pop(size)
+            this.sizeFilter.remove(size)
         }
     }
 

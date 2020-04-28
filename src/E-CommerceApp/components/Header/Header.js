@@ -8,7 +8,7 @@ class Header extends React.Component {
         const { productCount, onSelectSortBy } = this.props
         return (
             <Container>
-            <NoOfProducts>{productCount}</NoOfProducts>
+            <NoOfProducts>{productCount}Products(s) found</NoOfProducts>
             <ProductSort onSelectSortBy={onSelectSortBy}/>
             </Container>
         )

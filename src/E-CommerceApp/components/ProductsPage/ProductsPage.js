@@ -3,9 +3,12 @@ import { observer, inject } from 'mobx-react'
 import { withRouter } from "react-router-dom";
 import { Container, Group } from '../../styledComponents/ProductsPageStyles'
 import LoadingWrapperWithFailure from '../../../common/LoadingWrapperWithFailure'
+import NoDataView from '../../../common/NoDataView'
 import Header from '../Header'
 import SizeFilter from '../SizeFilter'
-import ProductList from '../ProductList'
+import RenderProductList from '../RenderProductsList'
+import ProductCart from '../ProductCart'
+
 
 @inject('productStore', 'authStore')
 @observer
@@ -35,26 +38,25 @@ class ProductsPage extends React.Component {
     }
 
     renderProductList = () => {
-        /*
+        const products = this.getProductStore().sortedAndFilteredProducts
         if (this.getProductStore().sortedAndFilteredProducts.length === 0) {
             return <NoDataView/>
         }
         else {
             return (
-                <div>jhjfdf</div>
+                <RenderProductList products={products}/>
             )
-        }*/
-        return (
-            <ProductList products={this.getProductStore().sortedAndFilteredProducts}/>
-        )
+        }
+
 
     }
 
     render() {
         const { getProductListAPIStatus, getProductListAPIError } = this.getProductStore()
-        console.log(this.getProductStore().sortedAndFilteredProducts)
+        console.log("con", this.getProductStore().sortedAndFilteredProducts)
         return (
             <Container>
+            <ProductCart />
             <SizeFilter onSelectSize={this.getProductStore().onSelectSize}/>
             <Group>
             <Header 
