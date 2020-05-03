@@ -5,7 +5,7 @@ import {
   Redirect
 }
 from "react-router-dom";
-import { getAccessToken, clearUserSession } from '../../utils/StorageUtils'
+import { getAccessToken } from '../../utils/StorageUtils'
 
 @inject('loginStore')
 @observer
@@ -17,16 +17,17 @@ class Home extends React.Component {
     return (
       <Redirect
       to={{
-      pathname:'/grid-game'
+      pathname:'/sign-in-page'
       }}
       />
     )
   }
   render() {
     let token = getAccessToken()
-    if (token === "f5af9f51-07e6-4332-8f1a-c0c11c1e343") {
+    /*
+    if (true) {
       return this.gotoTodoScreenIfLoggedIn()
-    }
+    }*/
     return (
       <div>
               <nav>

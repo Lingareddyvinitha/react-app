@@ -18,11 +18,11 @@ class AuthStore {
     }
 
     @action.bound
-    userSignIn() {
+    userSignIn(gotoECommerceAppIfLoggedIn) {
         const userSignInAPI = this.authAPIService.getUserSignInAPI()
-        return bindPromiseWithOnSuccess(userSignInAPI)
-            .to(this.setGetUserSignInAPIStatus, this.setUserSignInAPIResponse)
-            .catch(this.setGetUserSignInAPIError)
+        bindPromiseWithOnSuccess(userSignInAPI)
+            .to(this.setUserSignInAPIStatus, this.setUserSignInAPIResponse)
+            .catch(this.setUserSignInAPIError)
     }
 
     @action.bound
@@ -32,12 +32,12 @@ class AuthStore {
     }
 
     @action.bound
-    setGetUserSignInAPIError(error) {
+    setUserSignInAPIError(error) {
         this.getUserSignInAPIError = error
     }
 
     @action.bound
-    setGetUserSignInAPIStatus(status) {
+    setUserSignInAPIStatus(status) {
         this.getUserSignInAPIStatus = status
     }
 

@@ -9,7 +9,7 @@ const UserName = styled.input `${tw`border-solid border border-current rounded-m
 
 const Password = UserName.withComponent('input')
 
-const SignIn = styled.button `${tw `h-12 w-48 bg-gray-900 text-white rounded-md m-2`}`
+const SignIn = styled.button `${tw `h-12 w-48 bg-gray-900 text-white rounded-md m-2 flex justify-center`}`
 
 const Heading = styled.div `${tw `font-bold m-2 self-start`}`
 

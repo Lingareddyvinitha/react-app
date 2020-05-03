@@ -6,9 +6,9 @@ import ProductList from '../ProductList'
 @observer
 class RenderProductList extends React.Component {
     render() {
-        const products = this.props.productStore.sortedAndFilteredProducts
+        const { products, onClickAddToCart } = this.props
         return (
-            <ProductList products={products} onClickAddToCart={products.onClickAddToCart}/>
+            <ProductList products={products} onClickAddToCart={onClickAddToCart}/>
         )
     }
 }

@@ -8,7 +8,7 @@ class ProductList extends React.Component {
     renderProducts = () => {
         const { products, onClickAddToCart } = this.props
         return products.map(product =>
-            <Product onClickAddToCart={onClickAddToCart} product={product}/>
+            <Product key={product.productId} onClickAddToCart={onClickAddToCart} product={product}/>
         )
     }
     render() {

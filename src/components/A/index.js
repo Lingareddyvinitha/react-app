@@ -12,6 +12,18 @@ class A extends React.Component {
         this.count++
     }
     render() {
+        const promise1 = new Promise(function(resolve, reject) {
+            resolve(new Error("promise"));
+        });
+
+        promise1.then(function(value) {
+                console.log(value.message);
+                return value.message
+            })
+            .then(value => console.log(value))
+
+
+
         return (
             <div>
             

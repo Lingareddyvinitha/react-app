@@ -1,13 +1,13 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Container, Group, Image, Info, Amount, Title, Style, Quantity } from '../../styledComponents/CartItemStyles'
+import { Container, Group, Image, Info, Amount, Title, Style, Quantity, Delete, Wrapper } from '../../styledComponents/CartItemStyles'
 
 
 @observer
 class CartItem extends React.Component {
     onRemoveCartItem = () => {
-        const { onRemoveCartItem } = this.props
-        onRemoveCartItem()
+        const { onRemoveCartItem, cartItem } = this.props
+        onRemoveCartItem(cartItem.cartItemId)
     }
     render() {
         const { cartItem } = this.props
@@ -20,7 +20,10 @@ class CartItem extends React.Component {
             <Style>{cartItem.printStyle}</Style>
             <Quantity>{cartItem.quantity}</Quantity>
             </Info>
-            <Amount>{cartItem.totalAmountOfPerticularItem}</Amount>
+            <Wrapper>
+            <Delete onClick={this.onRemoveCartItem}>x</Delete>
+            <Amount>{cartItem.currencyFormat}{cartItem.totalAmountOfPerticularItem}</Amount>
+            </Wrapper>
             </Group>
             </Container>
         )

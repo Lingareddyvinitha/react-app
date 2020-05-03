@@ -25,8 +25,8 @@ class CartModel {
         this.quantity++
     }
     @computed get totalAmountOfPerticularItem() {
-        const Amount = (this.quantity) * (this.price).toFixed(2)
-        return Amount
+        const Amount = (this.quantity) * (this.price)
+        return parseFloat(Amount).toFixed(2);
     }
 }
 

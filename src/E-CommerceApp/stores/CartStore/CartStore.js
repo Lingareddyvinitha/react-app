@@ -48,11 +48,21 @@ class CartStore {
     }
 
     @computed get totalCartAmount() {
-        this.cartProductList.map()
-
+        let totalCartAmount = 0
+        this.cartProductList.map(cartProduct =>
+            totalCartAmount = totalCartAmount + (cartProduct.quantity * cartProduct.price))
+        return parseFloat(totalCartAmount).toFixed(2)
     }
 
-    @computed get noOfProductsInCart() {}
+
+    @computed get noOfProductsInCart() {
+        let noOfProductsInCart = 0
+        this.cartProductList.map(cartProduct =>
+            noOfProductsInCart = noOfProductsInCart + (cartProduct.quantity)
+        )
+        return noOfProductsInCart
+
+    }
 }
 //const cartStore = new CartStore()
 export default CartStore

@@ -1,8 +1,10 @@
 import React from 'react'
 import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { withRouter } from "react-router-dom";
-import { clearUserSession } from '../../utils/StorageUtils'
+import { withRouter, Redirect } from "react-router-dom";
+import { getAccessToken } from '../../utils/StorageUtils'
+//import { API_FETCHING, API_SUCCESS, API_FAILED } from '@ib/api-constants'
+import Loader from 'react-loader-spinner'
 import {
     Container,
     SignInContainer,
@@ -36,8 +38,10 @@ class LoginPage extends React.Component {
     onClickSignIn = () => {
         if (this.username !== '' && this.password !== '') {
             this.errorMessage = ''
+            if (!window.navigator.onLine) {
+                this.errorMessage = "Network Error"
+            }
             this.getAuthStore().userSignIn()
-            this.navigatePage()
 
         }
         else if (this.username === '') {
@@ -48,9 +52,26 @@ class LoginPage extends React.Component {
         }
 
     }
-    navigatePage = () => {
+    /*
+    gotoECommerceAppIfLoggedIn = () => {
+        return <Redirect
+      to={{
+      pathname:'/products-page'
+      }}
+      />
+    }*/
+
+    gotoECommerceAppIfLoggedIn = () => {
         const { history } = this.props
-        history.replace({ pathname: (`/`) })
+        if (getAccessToken() === "f5af9f51-07e6-4332-8f1a-c0c11c1e3434") {
+            // history.replace({ pathname: (`/products-page`) })
+            return <Redirect
+      to={{pathname:'/products-page'}}/>
+            alert("jsddhf")
+        }
+        else {
+            history.replace({ pathname: (`/`) })
+        }
     }
     render() {
         return (
@@ -64,7 +85,10 @@ class LoginPage extends React.Component {
             <Password type='password' placeholder='Password' 
             value={this.password}
             onChange={this.onChangePassword}></Password>
-            <SignIn onClick={this.onClickSignIn}>Sign in</SignIn>
+            <SignIn onClick={this.onClickSignIn}>
+            {(this.getAuthStore().getUserSignInAPIStatus===100)?<Loader type="Oval" color="white" height={30} width={30} />:"Sign in"}
+            </SignIn>
+            {(this.getAuthStore().getUserSignInAPIStatus===200)&& this.gotoECommerceAppIfLoggedIn()}
             <ErrorMessage>{this.errorMessage}</ErrorMessage>
             </SignInContainer>
             </Container>

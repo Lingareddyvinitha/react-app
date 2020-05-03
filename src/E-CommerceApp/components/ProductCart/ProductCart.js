@@ -1,8 +1,11 @@
 import React from 'react'
 import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import { SidePanel, Element, Container, Cart, Display } from '../../styledComponents/ProductCartStyles'
+import { FiShoppingCart } from 'react-icons/fi'
+import { SidePanel, Element, Container, Cart, Display, Group, NoOfProductsInCart, Close, InSideCart, Header, Wrapper } from '../../styledComponents/ProductCartStyles'
 import CartList from '../CartList'
+import SubTotal from '../SubTotal'
+import CheckoutButton from '../CheckoutButton'
 @inject('cartStore')
 @observer
 class ProductCart extends React.Component {
@@ -22,22 +25,39 @@ class ProductCart extends React.Component {
         this.shouldDisplayCart = false
     }
     render() {
-        console.log("display", this.getCartStore().cartProductList)
         return (
             <Container shouldDisplayCart={this.shouldDisplayCart}>
             {this.shouldDisplayCart === true ? 
             <Display>
-            <button onClick={this.hideCart}>close</button>
+            <Close onClick={this.hideCart}>X</Close>
+            <Header>
+            <Wrapper>
+            <Cart onClick={this.showCart}><FiShoppingCart/></Cart>
+            <NoOfProductsInCart>{this.getCartStore().noOfProductsInCart}</NoOfProductsInCart>
+            </Wrapper>
+            </Header>
             <CartList 
             cartProductList={this.getCartStore().cartProductList}
-            onRemoveCartItem={this.getCartStore().onRemoveCartItem}/>
+            onRemoveCartItem={this.getCartStore().onRemoveCartItem}
+            noOfProductsInCart={this.getCartStore().noOfProductsInCart}/>
+            <SubTotal totalCartAmount={this.getCartStore().totalCartAmount}/>
+            <CheckoutButton totalCartAmount={this.getCartStore().totalCartAmount}
+            clearCart={this.getCartStore().clearCart}/>
             </Display>
             :
-            <button onClick={this.showCart}>open</button>}
+            <Group>
+            <Cart onClick={this.showCart}><FiShoppingCart/></Cart>
+            <NoOfProductsInCart>{this.getCartStore().noOfProductsInCart}</NoOfProductsInCart>
+            </Group>
+            }
+            
             </Container>
+
 
         )
     }
 }
 
 export default ProductCart
+/*
+<Close onClick={this.hideCart}>X</Close>*/

@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
-const Container = styled.div `${tw `flex justify-around items-center text-white flex-col` }`
+const Container = styled.div `${tw `flex justify-start text-white flex-col border border-black overflow-y-auto` }
+height:450px`
 
-const noOfProductsInCart = styled.div `${tw `text-yellow-500`}`
 export {
     Container,
-    noOfProductsInCart
 }

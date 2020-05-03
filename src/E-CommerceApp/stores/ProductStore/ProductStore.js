@@ -72,13 +72,14 @@ class ProductStore {
     }
 
     @action.bound
-    onSelectSize(size, addOrDelete) {
-        if (addOrDelete === 'add') {
+    onSelectSize(size, isClicked) {
+        if (isClicked) {
             this.sizeFilter.push(size)
         }
         else {
             this.sizeFilter.remove(size)
         }
+        console.log("filter", this.sizeFilter)
     }
 
     @computed get product() {
@@ -116,6 +117,24 @@ class ProductStore {
 
     @computed get totalNoOfProductsDisplayed() {
         return this.sortedAndFilteredProducts.length
+    }
+
+    @computed get availableSizes() {
+        let availableSizes = []
+        let availableSizesObj = []
+        this.productList.forEach(product => {
+            product.availableSizes.forEach(size => {
+                if (availableSizes.indexOf(size) === -1) {
+                    let sizeObject = {
+                        size,
+                        id: Math.random().toString()
+                    }
+                    availableSizes.push(size)
+                    availableSizesObj.push(sizeObject)
+                }
+            })
+        })
+        return availableSizesObj
     }
 
 

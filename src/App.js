@@ -37,6 +37,8 @@ import LoginPage from './components/LoginPage'
 import stores from './stores'
 import AuthRoutes from './Authentication/routes'
 import ProductsPageRoutes from './E-CommerceApp/routes/ProductsPageRoutes'
+import { ProtectedRoutes } from './common/ProtectedRoutes'
+import ProductsPage from "./E-CommerceApp/components/ProductsPage";
 
 
 //@observer
@@ -72,17 +74,6 @@ class App extends React.Component {
       backgroundColorForCard: "#2b6cb0"
     }
   }
-  /*
-  onChangeTheme = () => {
-    if (this.getCurrentTheme() === 'light Mode') {
-      //this.setState({ selectedTheme: 'dark Mode' })
-      this.setCurrentTheme("dark Mode");
-    }
-    else {
-      //this.setState({ selectedTheme: 'light Mode' })
-      this.setCurrentTheme("light Mode");
-    }
-  }*/
   render() {
     let dessertList = ["Vanilla", "ButterScotch", "Gulab Jamum", "Yoghurt Pots", "Baked Banana", "Chocolate"]
     let statesList = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
@@ -94,7 +85,6 @@ class App extends React.Component {
       <div>
         <Switch>
         {AuthRoutes}
-        {ProductsPageRoutes}
           <Route path="/TodosList">
             <TodosList />
           </Route>
@@ -138,6 +128,7 @@ class App extends React.Component {
           <Route path="/users-page" component={UsersPage}/>
           <Route path="/todo-page" component={TodoAppWithService}/>
           <Route path="/login-page" component={LoginPage}/>
+          <ProtectedRoutes exact path='/products-page' component={ProductsPage}/>
           <Route path="/">
             <Home/>
           </Route>
