@@ -92,7 +92,7 @@ class TodoStore {
     @computed get todosLength() {
         return this.todos.filter(todo => todo).length
     }
-
+    /*
     todoSuccessReaction = reaction(
         () => { return this.ActiveTodosCount },
         (length) => {
@@ -100,7 +100,7 @@ class TodoStore {
                 alert("all Completed")
             }
         }, { delay: 500 }
-    )
+    )*/
 
 
 

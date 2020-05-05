@@ -9,21 +9,22 @@ from "react-router-dom";
 import SignInPage from "../../Authentication/components/SignInPage";
 import ProductsPage from "../../E-CommerceApp/components/ProductsPage";
 import { getAccessToken } from '../../Authentication/utils/StorageUtils'
-
+import { withRouter, Redirect } from "react-router-dom";
+import AuthRoutes from "../../Authentication/routes";
+//import TodoAppWithService from '../../components/TodoAppWithService'
 
 
 export const ProtectedRoutes = ({ component: Component, ...other }) => {
+    console.log("mesage", { ...other })
     if (getAccessToken() === "f5af9f51-07e6-4332-8f1a-c0c11c1e3434") {
-        return <Route {...other} render={
-      props => <Component {...other} {...props} />
+        return <Route component={Component} {...other} />
     }
-    />
-    //return (<Route path="/products-page" component={ProductsPage} />)
-}
-else {
-    alert("hkhk")
-    return (
-        <Route exact path="/sign-in-page" component={SignInPage} />)
-}
+    else {
+        alert("hi")
+
+        return <Redirect
+      to={{pathname:'/sign-in-page'}}/>
+        //return <Route path="/sign-in-page" component={SignInPage} />
+    }
 
 }

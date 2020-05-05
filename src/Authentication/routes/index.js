@@ -1,5 +1,5 @@
 //import React from 'react'
-import Routes from './routes'
+import AuthRoutes from './routes'
 
 /*
 class Routes extends React.Component {
@@ -11,4 +11,4 @@ class Routes extends React.Component {
 }*/
 
 
-export default Routes
+export default AuthRoutes

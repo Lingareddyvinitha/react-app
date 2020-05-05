@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { Container, Group, SignOut, Top, Right, Left } from '../../styledComponents/ProductsPageStyles'
 import LoadingWrapperWithFailure from '../../../common/LoadingWrapperWithFailure'
 import NoDataView from '../../../common/NoDataView'
@@ -39,8 +39,10 @@ class ProductsPage extends React.Component {
 
     onClickSignOut = () => {
         clearUserSession()
+        //return <Redirect
+        //to={{pathname:'/todo-page'}}/>
         const { history } = this.props
-        history.replace({ pathname: (`/`) })
+        history.replace({ pathname: '/sign-in-page' })
     }
 
     renderProductList = observer(() => {

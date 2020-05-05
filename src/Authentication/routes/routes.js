@@ -7,11 +7,11 @@ import {
 }
 from "react-router-dom";
 
-import SignInPage from "../components/SignInPage";
+import { SignInRoute } from "./SignInRoutes";
 
-const routes = [
-    <Route path="/sign-in-page" component={SignInPage} />
+const AuthRoutes = [
+    <Route path="/sign-in-page" component={SignInRoute} />
 
 ];
 
-export default routes;
+export default AuthRoutes;

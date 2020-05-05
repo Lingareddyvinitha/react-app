@@ -11,13 +11,15 @@ class ProductStore {
     @observable sortBy
     constructor(productsAPIService) {
         this.productsAPIService = productsAPIService
-        this.productsFromSource = []
-        this.init()
+        this.productsFromSource =
+            this.init()
+
     }
 
     @action.bound
     init() {
         this.getProductListAPIStatus = API_INITIAL
+        console.log("this.getProductListAPIStatus", this.getProductListAPIStatus)
         this.productList = []
         this.sizeFilter = []
         this.sortBy = "SELECT"
