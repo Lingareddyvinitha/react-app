@@ -34,7 +34,7 @@ class LoginPage extends React.Component {
         return (
             <Container>
             <SignInContainer>
-            <Heading>Sign in</Heading>
+            <Heading>Sign In</Heading>
             <UserName type='text' placeholder='Username'
             value={username}
             onChange={onChangeUsername}>
@@ -43,7 +43,7 @@ class LoginPage extends React.Component {
             value={password}
             onChange={onChangePassword}></Password>
             <SignIn onClick={onClickSignIn}>
-            {(getUserSignInAPIStatus===100)?<Loader type="Oval" color="white" height={30} width={30} />:"Sign in"}
+            {(getUserSignInAPIStatus===100)?<Loader data-testid="loading" type="Oval" color="white" height={30} width={30} />:"Sign in"}
             </SignIn>
             {(getUserSignInAPIStatus===200)&& gotoECommerceAppIfLoggedIn()}
             <ErrorMessage>{errorMessage}</ErrorMessage>

@@ -75,7 +75,7 @@ describe("AuthStore Tests", () => {
             .mockImplementation(() => Promise.reject())
         /*
         const mockFailurePromise = new Promise(function(resolve, reject) {
-            resolve();
+            reject();
         });
         const mockSignInAPI = jest.fn();
         mockSignInAPI.mockReturnValue(mockFailurePromise);
@@ -84,7 +84,6 @@ describe("AuthStore Tests", () => {
         await authStore.userSignIn();
         expect(authStore.getUserSignInAPIStatus).toBe(API_FAILED);
     });
-
     it("should test user sign-out", () => {
         authStore.userSignOut();
         expect(mockRemoveCookie).toBeCalled();

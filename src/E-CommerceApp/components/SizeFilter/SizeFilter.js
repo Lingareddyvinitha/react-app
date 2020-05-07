@@ -9,7 +9,7 @@ class SizeFilter extends React.Component {
     renderEachSize = () => {
         const { availableSizes, onSelectSize } = this.props
         return availableSizes.map(size =>
-            <Size eachSize={size} key={size.id} onSelectSize={onSelectSize}/>
+            <Size eachSize={size} key={size} onSelectSize={onSelectSize}/>
         )
     }
     render() {

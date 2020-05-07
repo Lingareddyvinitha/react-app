@@ -4,13 +4,15 @@ class CartModel {
     @observable productId
     @observable quantity
     constructor(cartItem) {
+        const { productId: id } = cartItem
+        console.log("vidisd", id)
         this.cartItemId = Math.random().toString()
         this.productId = cartItem.productId,
             this.availableSizes = cartItem.availableSizes,
             this.currencyFormat = cartItem.currencyFormat,
             this.currencyId = cartItem.currencyId,
             this.description = cartItem.description,
-            this.installmentsCount = cartItem.installmentsCount,
+            this.installmentsCount = cartItem.installments,
             this.isFreeShipping = cartItem.isFreeShipping,
             this.price = cartItem.price,
             this.printStyle = cartItem.printStyle,

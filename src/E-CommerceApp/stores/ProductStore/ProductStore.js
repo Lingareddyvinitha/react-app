@@ -1,4 +1,4 @@
-import { observable, action, computed, reaction, autorun } from 'mobx'
+import { observable, action, computed, reaction, autorun, toJS } from 'mobx'
 import { API_INITIAL, API_FETCHING, API_SUCCESS, API_FAILED } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import ProductModel from './models/ProductModel'
@@ -19,7 +19,7 @@ class ProductStore {
     @action.bound
     init() {
         this.getProductListAPIStatus = API_INITIAL
-        console.log("this.getProductListAPIStatus", this.getProductListAPIStatus)
+        this.getProductListAPIError = null
         this.productList = []
         this.sizeFilter = []
         this.sortBy = "SELECT"
@@ -81,7 +81,6 @@ class ProductStore {
         else {
             this.sizeFilter.remove(size)
         }
-        console.log("filter", this.sizeFilter)
     }
 
     @computed get product() {
@@ -123,20 +122,14 @@ class ProductStore {
 
     @computed get availableSizes() {
         let availableSizes = []
-        let availableSizesObj = []
         this.productList.forEach(product => {
             product.availableSizes.forEach(size => {
                 if (availableSizes.indexOf(size) === -1) {
-                    let sizeObject = {
-                        size,
-                        id: Math.random().toString()
-                    }
                     availableSizes.push(size)
-                    availableSizesObj.push(sizeObject)
                 }
             })
         })
-        return availableSizesObj
+        return availableSizes
     }
 
 
@@ -148,4 +141,4 @@ class ProductStore {
     }
 }
 
-export default ProductStore
+export { ProductStore }

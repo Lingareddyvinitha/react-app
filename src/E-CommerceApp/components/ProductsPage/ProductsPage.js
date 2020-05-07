@@ -14,45 +14,44 @@ import Toastify from '../Toastify'
 import ProductList from '../ProductList'
 
 
-@inject('productStore', 'authStore')
+//@inject('productStore', 'authStore')
 @observer
 class ProductsPage extends React.Component {
+    /*
     componentDidMount() {
         this.doNetworkCalls()
     }
-
+    
     componentWillUnmount() {
         this.getProductStore().clearStore()
     }
-
+    
     getProductStore = () => {
         return this.props.productStore
     }
-
+    
     getAuthStore = () => {
         return this.props.authStore
     }
-
+    
     doNetworkCalls = () => {
         this.getProductStore().getProductList()
     }
-
+    
     onClickSignOut = () => {
         clearUserSession()
-        //return <Redirect
-        //to={{pathname:'/todo-page'}}/>
         const { history } = this.props
         history.replace({ pathname: '/sign-in-page' })
-    }
+    }*/
 
     renderProductList = observer(() => {
-        const products = this.getProductStore().sortedAndFilteredProducts
-        if (this.getProductStore().sortedAndFilteredProducts.length === 0) {
+        const { sortedAndFilteredProducts } = this.props
+        if (sortedAndFilteredProducts.length === 0) {
             return <NoDataView/>
         }
         else {
             return (
-                <ProductList products={products} onClickAddToCart={products.onClickAddToCart}/>
+                <ProductList products={sortedAndFilteredProducts} onClickAddToCart={sortedAndFilteredProducts.onClickAddToCart}/>
                 //<RenderProductList products={products} onClickAddToCart={products.onClickAddToCart}/>
             )
         }
@@ -61,29 +60,38 @@ class ProductsPage extends React.Component {
     })
 
     render() {
-        const { getProductListAPIStatus, getProductListAPIError } = this.getProductStore()
-        console.log("con", this.getProductStore().availableSizes)
+        const {
+            getProductListAPIStatus,
+            getProductListAPIError,
+            onClickSignOut,
+            onSelectSize,
+            availableSizes,
+            totalNoOfProductsDisplayed,
+            onChangeSortBy,
+            doNetworkCalls,
+
+        } = this.props
         return (
             <Container>
             <Top>
-            <SignOut onClick={this.onClickSignOut}>Sign Out</SignOut>
+            <SignOut onClick={onClickSignOut}>Sign Out</SignOut>
             <ProductCart />
             </Top>
             <Group>
             <Right>
-            <SizeFilter onSelectSize={this.getProductStore().onSelectSize}
-            availableSizes={this.getProductStore().availableSizes}
+            <SizeFilter onSelectSize={onSelectSize}
+            availableSizes={availableSizes}
             />
             </Right>
             <Left>
             <Header 
-            productCount={this.getProductStore().totalNoOfProductsDisplayed}
-            onSelectSortBy={this.getProductStore().onChangeSortBy}/>
+            productCount={totalNoOfProductsDisplayed}
+            onSelectSortBy={onChangeSortBy}/>
             
             <LoadingWrapperWithFailure
             apiStatus={getProductListAPIStatus}
             apiError={getProductListAPIError}
-            onRetryClick={this.doNetworkCalls}
+            onRetryClick={doNetworkCalls}
             renderSuccessUI={this.renderProductList}
             />
             </Left>

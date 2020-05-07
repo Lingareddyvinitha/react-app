@@ -35,10 +35,11 @@ import UsersPage from './components/UsersPage'
 import TodoAppWithService from './components/TodoAppWithService'
 import LoginPage from './components/LoginPage'
 import stores from './stores'
+import EcommerceStore from './E-CommerceApp/stores/EcommerceStore'
 import AuthRoutes from './Authentication/routes'
 import ProductsPageRoutes from './E-CommerceApp/routes/ProductsPageRoutes'
 import { ProtectedRoutes } from './common/ProtectedRoutes'
-import ProductsPage from "./E-CommerceApp/components/ProductsPage";
+import { ProductsPageRoute } from "./E-CommerceApp/routes/ProductsPage";
 
 
 //@observer
@@ -79,7 +80,7 @@ class App extends React.Component {
     let statesList = ["Andhra Pradesh", "Telangana", "Tamil Nadu", "Kerala", "Karnataka", "Haryana"];
     let citiesList = ["Hyderabad", "Chennai", "Bangalore", "Pune", "Mumbai", "Delhi"]
     return (
-      <Provider {...stores}>
+      <Provider {...stores} {...EcommerceStore}>
       <div>
       <Router basename={process.env.PUBLIC_URL}>
       <div>
@@ -128,7 +129,7 @@ class App extends React.Component {
           <Route path="/users-page" component={UsersPage}/>
           <Route path="/todo-page" component={TodoAppWithService}/>
           <Route path="/login-page" component={LoginPage}/>
-          <ProtectedRoutes exact path='/products-page' component={ProductsPage}/>
+          <ProtectedRoutes exact path='/products-page' component={ProductsPageRoute}/>
           <Route path="/">
             <Home/>
           </Route>

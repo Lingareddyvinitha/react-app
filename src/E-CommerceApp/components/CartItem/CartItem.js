@@ -7,7 +7,7 @@ import { Container, Group, Image, Info, Amount, Title, Style, Quantity, Delete, 
 class CartItem extends React.Component {
     onRemoveCartItem = () => {
         const { onRemoveCartItem, cartItem } = this.props
-        onRemoveCartItem(cartItem.cartItemId)
+        onRemoveCartItem(cartItem.productId)
     }
     render() {
         const { cartItem } = this.props

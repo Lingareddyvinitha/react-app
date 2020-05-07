@@ -20,19 +20,23 @@ class SignInRoute extends React.Component {
 
     onChangeUsername = (event) => {
         this.username = event.target.value
+        this.errorMessage = ""
     }
 
     onChangePassword = (event) => {
         this.password = event.target.value
+        this.errorMessage = ""
     }
 
     onClickSignIn = () => {
         if (this.username !== '' && this.password !== '') {
             this.errorMessage = ''
+            /*
             if (!window.navigator.onLine) {
                 this.errorMessage = "Network Error"
-            }
+            }*/
             this.getAuthStore().userSignIn()
+            console.log("click");
 
         }
         else if (this.username === '') {

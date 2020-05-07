@@ -6,9 +6,9 @@ import TodoStore from './TodoStore'
 import LoginStore from './LoginStore'
 import AuthStore from '../Authentication/stores/AuthStore'
 import AuthService from '../Authentication/services/Authentication'
-import ProductStore from '../E-CommerceApp/stores/ProductStore'
-import ProductService from '../E-CommerceApp/services/ProductService'
-import CartStore from '../E-CommerceApp/stores/CartStore'
+//import { ProductStore } from '../E-CommerceApp/stores/ProductStore/ProductStore.js'
+//import ProductService from '../E-CommerceApp/services/ProductService'
+//import CartStore from '../E-CommerceApp/stores/CartStore'
 
 
 const counterStore = new CounterStore()
@@ -19,9 +19,9 @@ const todoStore = new TodoStore(todoService)
 const loginStore = new LoginStore()
 const authService = new AuthService()
 const authStore = new AuthStore(authService)
-const productService = new ProductService()
-const productStore = new ProductStore(productService)
-const cartStore = new CartStore();
+//const productService = new ProductService()
+//const productStore = new ProductStore(productService)
+//const cartStore = new CartStore();
 
 export default {
     counterStore,
@@ -29,6 +29,6 @@ export default {
     todoStore,
     loginStore,
     authStore,
-    productStore,
-    cartStore
+    //productStore,
+    //cartStore
 }

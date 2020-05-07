@@ -1,2 +1,2 @@
-import ProductStore from './ProductStore'
-export default ProductStore
+import { ProductStore } from './ProductStore'
+export { ProductStore }
