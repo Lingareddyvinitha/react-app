@@ -1,2 +1,2 @@
-import { SignInRoute } from './SignInRoutes'
+import SignInRoute from './SignInRoutes'
 export { SignInRoute }

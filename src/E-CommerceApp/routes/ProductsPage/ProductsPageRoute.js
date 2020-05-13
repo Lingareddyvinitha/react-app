@@ -2,6 +2,7 @@ import React from 'react'
 import { observer, inject } from 'mobx-react'
 import { withRouter, Redirect } from "react-router-dom";
 import { clearUserSession, getAccessToken } from '../../utils/StorageUtils'
+import NoDataView from '../../../common/NoDataView'
 import ProductsPage from '../../components/ProductsPage'
 @inject('productStore', 'authStore')
 @observer
@@ -27,10 +28,12 @@ class ProductsPageRoute extends React.Component {
     }
 
     onClickSignOut = () => {
+        console.log("signOutButton")
         clearUserSession()
         const { history } = this.props
         history.replace({ pathname: '/sign-in-page' })
     }
+
     render() {
         const { getProductListAPIStatus, getProductListAPIError } = this.getProductStore()
         return (

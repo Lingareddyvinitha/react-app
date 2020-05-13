@@ -14,9 +14,8 @@ class Size extends React.Component {
     }
     render() {
         const { eachSize } = this.props
-        console.log("eachSize", eachSize);
         return (
-            <SizeButton onClick={this.onSelectSize} isClicked={this.isClicked}>{eachSize}</SizeButton>
+            <SizeButton onClick = { this.onSelectSize } isClicked={this.isClicked}>{eachSize}</SizeButton>
         )
     }
 

@@ -39,7 +39,6 @@ class Product extends React.Component {
     render() {
         const { product } = this.props
         const installmentCalculation = (product.price / product.installmentsCount).toFixed(2)
-        console.log(installmentCalculation)
         return (
             <Container>
             <Group>

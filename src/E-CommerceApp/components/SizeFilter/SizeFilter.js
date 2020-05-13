@@ -26,12 +26,3 @@ class SizeFilter extends React.Component {
 }
 
 export default SizeFilter
-/*
-<Group>
-            <XS value='XS' name='unClicked'>XS</XS>
-            <S value='S' name='unClicked'>S</S>
-            <M value='M' name='unClicked'>M</M>
-            <L value='L' name='unClicked'>L</L>
-            <XL value='XL' name='unClicked'>XL</XL>
-            <XXL value='XXL' name='unClicked'>XXL</XXL>
-            </Group>*/

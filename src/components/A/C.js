@@ -1,21 +1,12 @@
 import React from "react"
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-}
-from 'recharts';
-
-
+import { observer } from 'mobx-react'
+@observer
 class C extends React.Component {
     static defaultProps = {
         name: "react",
     };
     render() {
+        alert("c")
         const { name } = this.props
         return (
             <div>

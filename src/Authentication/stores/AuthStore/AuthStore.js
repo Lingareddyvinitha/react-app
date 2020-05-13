@@ -27,6 +27,7 @@ class AuthStore {
 
     @action.bound
     setGetUserSignInAPIResponse(response) {
+        //console.log(response)
         setAccessToken(response[0].access_token)
 
     }
@@ -39,6 +40,7 @@ class AuthStore {
 
     @action.bound
     setGetUserSignInAPIStatus(status) {
+        console.log("store", status);
         this.getUserSignInAPIStatus = status
     }
 

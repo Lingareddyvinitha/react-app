@@ -20,8 +20,6 @@ export const ProtectedRoutes = ({ component: Component, ...other }) => {
         return <Route component={Component} {...other} />
     }
     else {
-        alert("hi")
-
         return <Redirect
       to={{pathname:'/sign-in-page'}}/>
         //return <Route path="/sign-in-page" component={SignInPage} />

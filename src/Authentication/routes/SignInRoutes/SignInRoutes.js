@@ -4,15 +4,24 @@ import { observer, inject } from 'mobx-react'
 import { withRouter, Redirect } from "react-router-dom";
 import { getAccessToken } from '../../utils/StorageUtils';
 import SignInPage from '../../components/SignInPage'
+
+
+
+
+
 @inject("authStore")
 @observer
 class SignInRoute extends React.Component {
+    signFormRef = React.createRef()
     @observable username = ""
     @observable password = ""
     @observable errorMessage = ''
-    getAuthStore = () => {
-        return this.props.authStore
-    }
+
+    /*    
+        getAuthStore = () => {
+            return this.props.authStore
+        }
+        */
 
     getAuthStore = () => {
         return this.props.authStore
@@ -44,17 +53,23 @@ class SignInRoute extends React.Component {
         }
         else {
             this.errorMessage = 'enter password'
+            if (this.errorMessage === 'enter password') {
+                this.signFormRef.current.passwordRef.current.focus()
+            }
         }
 
     }
 
     gotoECommerceAppIfLoggedIn = () => {
         if (getAccessToken() === "f5af9f51-07e6-4332-8f1a-c0c11c1e3434") {
-            return <Redirect
-      to={{pathname:'/products-page'}}/>
+            const { history } = this.props;
+            history.replace("/products-page")
+            console.log("history changed")
+
         }
     }
     render() {
+
         return (
             <SignInPage 
             onChangeUsername={this.onChangeUsername}
@@ -65,9 +80,10 @@ class SignInRoute extends React.Component {
             errorMessage={this.errorMessage}
             getUserSignInAPIStatus={this.getAuthStore().getUserSignInAPIStatus}
             gotoECommerceAppIfLoggedIn={this.gotoECommerceAppIfLoggedIn}
+            ref={this.signFormRef}
             />
         )
     }
 }
 
-export { SignInRoute }
+export default withRouter(SignInRoute);
