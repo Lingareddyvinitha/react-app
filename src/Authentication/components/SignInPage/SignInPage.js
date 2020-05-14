@@ -61,7 +61,6 @@ class LoginPage extends React.Component {
             {(getUserSignInAPIStatus===200)&& gotoECommerceAppIfLoggedIn()}
             <ErrorMessage>{errorMessage}</ErrorMessage>
             </SignInContainer>
-            <Display>{2*4}</Display>
             </Container>
         )
     }
