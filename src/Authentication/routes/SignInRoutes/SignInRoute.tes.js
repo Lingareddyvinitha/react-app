@@ -52,7 +52,7 @@ describe("SignInRoute Tests", () => {
         jest.resetAllMocks();
     });
 
-    /* it("should render username empty error message", () => {
+    it("should render username empty error message", () => {
         const { getByText, getByRole } = render(
             <Router history={createMemoryHistory()}>
                 <SignInRoute authStore={authStore} />
@@ -79,9 +79,9 @@ describe("SignInRoute Tests", () => {
 
         getByText(/enter password/i);
     });
-    /*
+
     it("should submit sign-in on press enter", async() => {
-        const { getByTestId, getByPlaceholderText, getByRole, getByText } = render(
+        const { getByTestId, getByPlaceholderText, getByRole, getByText, debug, getByLabelText } = render(
             <Router history={createMemoryHistory()}>
         <SignInRoute authStore={authStore} />
       </Router>
@@ -95,10 +95,11 @@ describe("SignInRoute Tests", () => {
 
         fireEvent.change(usernameField, { target: { value: username } });
         fireEvent.change(passwordField, { target: { value: password } });
-        //fireEvent.keyPress(signInButton, { key: "Enter", code: "Enter" });
-
-        await waitFor(() => getByTestId("loading"));
-    });*/
+        fireEvent.keyPress(signInButton, { key: "Enter", code: "Enter" });
+        debug()
+        await waitFor(() => getByLabelText("audio-loading"));
+        //await waitFor(() => getByTestId("loading"));
+    });
 
     /*
         it("should render signInRoute loading state", async() => {

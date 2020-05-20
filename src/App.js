@@ -40,7 +40,7 @@ import AuthRoutes from './Authentication/routes'
 import ProductsPageRoutes from './E-CommerceApp/routes/ProductsPageRoutes'
 import { ProtectedRoutes } from './common/ProtectedRoutes'
 import { ProductsPageRoute } from "./E-CommerceApp/routes/ProductsPage";
-
+import { PracticeAdvancedConceptsRoute } from './common/routes/PracticeAdvancedConceptsRoute'
 
 //@observer
 
@@ -130,6 +130,7 @@ class App extends React.Component {
           <Route path="/todo-page" component={TodoAppWithService}/>
           <Route path="/login-page" component={LoginPage}/>
           <ProtectedRoutes exact path='/products-page' component={ProductsPageRoute}/>
+          <Route path="/practice-advanced-concepts" component={PracticeAdvancedConceptsRoute}/>
           <Route path="/">
             <Home/>
           </Route>

@@ -30,14 +30,30 @@ class SignInRoute extends React.Component {
     onChangeUsername = (event) => {
         this.username = event.target.value
         this.errorMessage = ""
+        if (event.keyCode == 13) {
+            event.preventDefault()
+            this.signFormRef.current.passwordRef.current.focus()
+        }
+
+
+
     }
+    /*
+    changeFocusToPassword = (event) => {
+        
+    }*/
 
     onChangePassword = (event) => {
         this.password = event.target.value
         this.errorMessage = ""
+        if (event.keyCode == 13) {
+            event.preventDefault()
+            this.signFormRef.current.passwordRef.current.focus()
+        }
     }
 
     onClickSignIn = () => {
+        console.log("SignIn")
         if (this.username !== '' && this.password !== '') {
             this.errorMessage = ''
             /*
@@ -49,11 +65,11 @@ class SignInRoute extends React.Component {
 
         }
         else if (this.username === '') {
-            this.errorMessage = 'enter username'
+            this.errorMessage = 'Please enter username'
             this.signFormRef.current.userNameRef.current.focus()
         }
         else {
-            this.errorMessage = 'enter password'
+            this.errorMessage = 'Please enter password'
             this.signFormRef.current.passwordRef.current.focus()
 
         }
@@ -80,6 +96,7 @@ class SignInRoute extends React.Component {
             errorMessage={this.errorMessage}
             getUserSignInAPIStatus={this.getAuthStore().getUserSignInAPIStatus}
             gotoECommerceAppIfLoggedIn={this.gotoECommerceAppIfLoggedIn}
+            changeFocusToPassword={this.changeFocusToPassword}
             ref={this.signFormRef}
             />
         )

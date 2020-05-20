@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 
-const Container = styled.div `${tw `flex justify-center items-center w-1/5 flex-col m-2 border border-white hover:border hover:border-gray-400` }`
+const Container = styled.div `${tw `flex justify-center items-center w-56 flex-col m-2 border border-white hover:border hover:border-gray-400` }`
 
-const Image = styled.img `${tw `w-48 h-64`}`
+const Image = styled.img `${tw `w-4/5 h-full`}`
 
 const Title = styled.span `${tw ``}`
 

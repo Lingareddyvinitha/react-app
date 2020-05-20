@@ -28,7 +28,6 @@ class ProductsPageRoute extends React.Component {
     }
 
     onClickSignOut = () => {
-        console.log("signOutButton")
         clearUserSession()
         const { history } = this.props
         history.replace({ pathname: '/sign-in-page' })

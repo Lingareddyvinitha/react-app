@@ -6,6 +6,7 @@ import { TiArrowLeftThick } from 'react-icons/ti'
 import loaderImg from './loader-icon.svg'
 import { withRouter } from "react-router-dom";
 import themeStore from '../../stores/ThemeStore'
+import { withEnhancement } from './hocs/withEnhancement.js'
 @observer
 class CountryDetails extends React.Component {
     getCurrentTheme = () => {
@@ -18,10 +19,11 @@ class CountryDetails extends React.Component {
     async componentDidMount() {
         this.getCountryDetails()
     }
-    getCountryDetails = async() => {
-        const response = await fetch(`https://restcountries.eu/rest/v2/all`);
-        const json = await response.json();
-        this.setState({ countries: json });
+    getCountryDetails = () => {
+        let { countries } = this.props
+        //const response = await fetch(`https://restcountries.eu/rest/v2/all`);
+        //const json = await response.json();
+        this.setState({ countries: countries });
     }
     navigateBack = () => {
         this.props.history.goBack();
@@ -84,4 +86,4 @@ class CountryDetails extends React.Component {
     }
 }
 
-export default withRouter(CountryDetails)
+export default withRouter(withEnhancement(CountryDetails))

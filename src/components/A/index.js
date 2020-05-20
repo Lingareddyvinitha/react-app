@@ -10,39 +10,34 @@ import store from './Store'
 
 @observer
 class A extends React.Component {
-
+    @observable count1 = 0
+    @observable count2 = 0
     @observable count = 1
+    @observable value = ""
     increment = () => {
-        store.increment()
+        //store.increment()
         this.count++
-    }
-    render() {
-        let myObj = {
-            firstName: "Obama",
-            getAsyncData: function(cb) {
-                console.log("getAsyncData")
-                console.log(this.firstName)
-                cb()
-            },
-            render: function() {
-                console.log("render")
-                console.log(this.firstName);
-                this.getAsyncData(function() {
-                    console.log("render in function")
-                    console.log(this.firstName);
-                })
 
-            }
-        }
-        myObj.render();
-        
+            this.decrement()
+    }
+    decrement = () => {
+        this.count1++;
+        this.count2++
+    }
+    change = (event) => {
+        console.log(event.target.value);
+    }
+
+
+    render() {
+        console.log("render called")
         return (
             <div>
-            
-            <Provider increment={this.increment}>
-            <B count={this.count}/>
-            <C />
-            </Provider>
+            <div>count1:{this.count1}</div>
+            <div>count1:{this.count2}</div>
+            <div>count:{this.count}</div>
+            <input value="" onChange={this.change}/>
+            <button onClick={this.increment}>button</button>
             
             
             </div>
@@ -50,6 +45,11 @@ class A extends React.Component {
     }
 }
 export default A*/
+/*
+<Provider increment={this.increment} store={store}>
+            <B count={this.count}/>
+            <C />
+            </Provider>*/
 
 /*
 import React from "react";
@@ -308,6 +308,7 @@ class A extends Component {
 }
 export default A
 */
+/*
 import React, { Component } from "react";
 import { render } from "react-dom";
 import { observer } from "mobx-react";
@@ -341,4 +342,202 @@ class A extends Component {
     }
 }
 
+export default A
+*/
+/*
+import React from "react";
+import { render } from "react-dom";
+import { observer } from "mobx-react";
+import { observable } from "mobx";
+
+class AuthStore {
+    @observable isSignedIn = false;
+
+    onChange() {
+        console.log("onChange isSignedIn");
+        this.isSignedIn = !this.isSignedIn;
+    }
+}
+
+const authStore = new AuthStore();
+
+@observer
+class A extends React.Component {
+    onChange() {
+        const { onChange } = authStore;
+        onChange();
+    }
+    render() {
+        const { isSignedIn } = authStore;
+        console.log("isSignedIn:", isSignedIn);
+
+        return <button onClick={this.onChange}>Sign In</button>;
+    }
+}
+
+render(<A />, document.getElementById("root"));
+*/
+/*
+import React from 'react'
+import { observable, values, toJS } from "mobx";
+class A extends React.Component {
+    persons = observable(new Map());
+
+    data = [{
+            id: 1,
+            name: "Sri Potti Sriramulu",
+            city: "Nellore",
+            state: "Andhra Pradesh",
+        },
+        {
+            id: 2,
+            name: "Pingali Venkayya",
+            city: "Vijayawada",
+            state: "Andhra Pradesh",
+        },
+        {
+            id: 3,
+            name: "Hanuma Vihari",
+            city: "Kakinada",
+            state: "Andhra Pradesh",
+        },
+    ];
+    componentDidMount() {
+        this.data.forEach((person) => {
+            this.persons.set(person.id, person);
+        });
+        const cities2 = Array.from(this.persons.values())
+        const cities3 = values(this.persons).map((person) => person.city);
+        //const obj1 = { 1: { name: "vni" }, 2: { name: "chitra" } }
+        //const cities5 = Array.from(this.obj1).map((person) => person.name);
+        //console.log("cities5", values(obj1))
+        const cities4 = this.persons.id
+        console.log("cities4", toJS(cities4))
+        console.log("cities2", cities2)
+    }
+    render() {
+
+        
+        const cities1 = [];
+        for (const [key, value] of this.persons.entries()) {
+            cities1.push(value.city);
+        }
+
+        const cities2 = Array.from(this.persons.values()).map((person) => person.city);
+
+        const cities3 = values(this.persons).map((person) => person.city);
+
+        const cities4 = this.persons.values().map((person) => person.city);
+        return (<div>hi</div>)
+    }
+}
+export default A*/
+/*
+import React from "react";
+import { render } from "react-dom";
+
+class ListItem extends React.Component {
+
+    shouldComponentUpdate(nextProps, nextState) {
+        
+        console.log("nextState", this);
+        console.log("this.props.value", this.props.value)
+        console.log("nextProps.value", nextProps)
+        if (this.props.value === nextProps.value) {
+
+            return false;
+        }
+
+        return true;
+        //return false;
+    }
+
+    render() {
+        console.log("new item");
+        console.log("df", this.props.value)
+        return <li>{this.props.value}</li>;
+    }
+}
+
+
+class A extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { numbers: [0, 10, 20] };
+    }
+    renderListItems = () => {
+        const { numbers } = this.state;
+        return numbers.map((number, index) => (
+            <ListItem key={index} value={number} />
+        ));
+    };
+
+    addNumberToList = () => {
+        const { numbers } = this.state;
+
+        this.setState({
+            numbers: [...numbers, numbers.length * 10],
+        });
+    };
+
+    render() {
+        return (
+            <div>
+        <ul>{this.renderListItems()}</ul>
+        <button onClick={this.addNumberToList}>Add number</button>
+      </div>
+        );
+    }
+}
+export default A*/
+import React from 'react'
+class Cat extends React.Component {
+    render() {
+        const mouse = this.props.mouse;
+        return (
+            <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+        );
+    }
+}
+
+class MouseWithCat extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleMouseMove = this.handleMouseMove.bind(this);
+        this.state = { x: 0, y: 0 };
+    }
+
+    handleMouseMove(event) {
+        this.setState({
+            x: event.clientX,
+            y: event.clientY
+        });
+    }
+
+    render() {
+        return (
+            <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove}>
+
+        {/*
+          We could just swap out the <p> for a <Cat> here ... but then
+          we would need to create a separate <MouseWithSomethingElse>
+          component every time we need to use it, so <MouseWithCat>
+          isn't really reusable yet.
+        */}
+        <Cat mouse={this.state} />
+      </div>
+        );
+    }
+}
+
+class A extends React.Component {
+    render() {
+        return (
+            <div>
+        <h1>Move the mouse around!</h1>
+        <MouseWithCat />
+      </div>
+        );
+    }
+}
 export default A

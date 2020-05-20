@@ -9,6 +9,8 @@ import loaderImg from './loader-icon.svg';
 import CountriesFilterBar from './CountriesFilterBar.js';
 import Header from './Header.js';
 import themeStore from '../../stores/ThemeStore'
+import { withEnhancement } from './hocs/withEnhancement.js'
+let a = 0
 @observer
 class DashBoard extends React.Component {
     constructor(props) {
@@ -28,7 +30,12 @@ class DashBoard extends React.Component {
     onChangeTheme = () => {
         themeStore.setCurrentTheme()
     }
+    componentDidMount() {
+        this.getCountries()
+    }
+    /*
     async componentDidMount() {
+        alert("DashBoard")
         let countries = await this.getCountries();
         if (countries.length > 0) {
             this.countriesBySearchText = countries;
@@ -40,6 +47,34 @@ class DashBoard extends React.Component {
             this.setState({ errorMessage: countries });
         }
 
+    }*/
+    getCountries = () => {
+        let countries = this.props.countries
+        if (countries.length > 0) {
+            this.countriesBySearchText = countries;
+            this.countriesBySelectedRegion = countries;
+            //this.getRegionOptions(countries);
+            this.setState({ countries: countries });
+        }
+        else {
+            this.setState({ errorMessage: countries });
+        }
+
+
+    }
+    /*
+    async componentDidMount() {
+        let countries = await this.getCountries();
+        if (countries.length > 0) {
+            this.countriesBySearchText = countries;
+            this.countriesBySelectedRegion = countries;
+            //this.getRegionOptions(countries);
+            this.setState({ countries: countries });
+        }
+        else {
+            this.setState({ errorMessage: countries });
+        }
+    
     }
     getCountries = async(countries) => {
         try {
@@ -53,7 +88,8 @@ class DashBoard extends React.Component {
         catch (error) {
             return error.message;
         }
-    }
+    }*/
+
     getRegionOptions = (countries) => {
         countries.forEach((country) => {
             if (this.regions.indexOf(country.region) === -1) {
@@ -120,7 +156,8 @@ class DashBoard extends React.Component {
 
             )
         }
+        //return <div>hi</div>
 
     }
 }
-export default withRouter(DashBoard);
+export default withRouter(withEnhancement(DashBoard));

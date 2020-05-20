@@ -83,6 +83,9 @@ class Home extends React.Component {
                   <li>
                     <Link to="/products-page">E-CommerceApp</Link>
                   </li>
+                  <li>
+                    <Link to="/practice-advanced-concepts">PracticeAdvancedConceptsRoute</Link>
+                  </li>
                 </ul>
               </nav>
                   </div>

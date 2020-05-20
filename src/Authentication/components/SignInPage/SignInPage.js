@@ -30,6 +30,7 @@ class LoginPage extends React.Component {
         this.userNameRef.current.focus()
     }
 
+
     render() {
         const {
             onChangeUsername,
@@ -39,7 +40,8 @@ class LoginPage extends React.Component {
             password,
             errorMessage,
             getUserSignInAPIStatus,
-            gotoECommerceAppIfLoggedIn
+            gotoECommerceAppIfLoggedIn,
+            changeFocusToPassword
         } = this.props
 
         return (
@@ -49,12 +51,14 @@ class LoginPage extends React.Component {
             <UserName type='text' placeholder='Username'
             ref={this.userNameRef}
             value={username}
-            onChange={onChangeUsername}>
+            onChange={onChangeUsername}
+            onKeyDown={onChangeUsername}>
             </UserName>
             <Password type='password' placeholder='Password'
             ref={this.passwordRef}
             value={password}
-            onChange={onChangePassword}></Password>
+            onChange={onChangePassword}
+            onKeyPress={onChangePassword}></Password>
             <SignIn onClick={onClickSignIn}>
             {(getUserSignInAPIStatus===100)?<Loader data-testid="loading" type="Oval" color="white" height={30} width={30} />:"Sign in"}
             </SignIn>

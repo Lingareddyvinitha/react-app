@@ -1,6 +1,9 @@
 import { observable, action, autorun } from 'mobx'
 
 class Store {
+    @observable apple = {
+        title: "vini"
+    };
     array = observable({
         title: "Foo",
         author: {
@@ -23,6 +26,7 @@ class Store {
     @action.bound
     increment() {
         alert("increment")
+        this.apple.title = "chitra"
         this.twitterUrls.set("Sara", "twitter.com/horsejs")
         this.array.likes.push("vin")
         this.array.author.name = "Chesterton"
