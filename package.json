@@ -22,7 +22,7 @@
     "react": "^16.13.0",
     "react-cookie-consent": "3.0.0",
     "react-dom": "^16.13.0",
-    "react-icons": "^3.9.0",
+    "react-icons": "3.10.0",
     "react-loader-spinner": "3.1.14",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
@@ -52,7 +52,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -86,5 +90,4 @@
       "!src/components/**/*.{ts,tsx,js,jsx}"
     ]
   }
-
 }

@@ -9,12 +9,18 @@ class ProductStore {
     @observable productList
     @observable sizeFilter
     @observable sortBy
+    @observable currentPage = 1
+    @observable productsPerPage = 3
+    @observable totalNoOfProducts
+    indexOfProduct = 0
+
     constructor(productsAPIService) {
         this.productsAPIService = productsAPIService
         this.productsFromSource =
             this.init()
 
     }
+
 
     @action.bound
     init() {
@@ -27,7 +33,7 @@ class ProductStore {
 
     @action.bound
     getProductList() {
-        const ProductListAPI = this.productsAPIService.getProductListAPI()
+        const ProductListAPI = this.productsAPIService.getProductListAPI(this.productsPerPage, this.indexOfProduct)
         return bindPromiseWithOnSuccess(ProductListAPI)
             .to(this.setGetProductListAPIStatus, this.setProductListResponse)
             .catch(this.setGetProductListAPIError)
@@ -40,12 +46,14 @@ class ProductStore {
 
     @action.bound
     setProductListResponse(productListResponse) {
-        this.productsFromSource = productListResponse
+        this.totalNoOfProducts = productListResponse.total
+        this.productsFromSource = productListResponse.products
         this.productsFromSource.map(product => this.onAddProduct(product))
     }
 
     @action.bound
     setGetProductListAPIError(error) {
+        console.log('error', error)
         this.getProductListAPIError = error
     }
 
@@ -132,6 +140,33 @@ class ProductStore {
         return availableSizes
     }
 
+    @computed get totalPages() {
+        return Math.ceil(this.totalNoOfProducts / this.productsPerPage)
+    }
+    @action.bound
+    onBackwardClick() {
+        if (this.currentPage > 1) {
+            this.indexOfProduct = this.indexOfProduct - this.productsPerPage;
+            --this.currentPage
+        }
+    }
+
+    @action.bound
+    onFarwardButtonClick() {
+        if (this.currentPage < this.totalPages) {
+            this.indexOfProduct = this.indexOfProduct + this.productsPerPage;
+            ++this.currentPage
+        }
+    }
+
+
+
+
+
+    @action.bound
+    clearProductList() {
+        this.productList = []
+    }
 
 
 

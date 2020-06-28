@@ -41,6 +41,7 @@ import ProductsPageRoutes from './E-CommerceApp/routes/ProductsPageRoutes'
 import { ProtectedRoutes } from './common/ProtectedRoutes'
 import { ProductsPageRoute } from "./E-CommerceApp/routes/ProductsPage";
 import { PracticeAdvancedConceptsRoute } from './common/routes/PracticeAdvancedConceptsRoute'
+import { Pagination } from './components/common/Pagination'
 
 //@observer
 
@@ -85,7 +86,8 @@ class App extends React.Component {
       <Router basename={process.env.PUBLIC_URL}>
       <div>
         <Switch>
-        {AuthRoutes}
+        
+        
           <Route path="/TodosList">
             <TodosList />
           </Route>
@@ -131,6 +133,7 @@ class App extends React.Component {
           <Route path="/login-page" component={LoginPage}/>
           <ProtectedRoutes exact path='/products-page' component={ProductsPageRoute}/>
           <Route path="/practice-advanced-concepts" component={PracticeAdvancedConceptsRoute}/>
+          <Route path="/pagination" component={Pagination}/>
           <Route path="/">
             <Home/>
           </Route>

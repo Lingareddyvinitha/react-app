@@ -38,7 +38,9 @@ class GridMemoryGame extends React.Component {
                 <GameResult 
                 onPlayAgainClick={this.getGridStore().onPlayAgainClick}
                 level={this.getGridStore().level}
-                selectedTheme={this.getThemeStore().selectedThemeForGridGame}/> :
+                gridGamePageBackgroundColor={this.getThemeStore().selectedThemeForGridGame.gridGamePageBackgroundColor}
+                textColor={this.getThemeStore().selectedThemeForGridGame.textColor}
+                /> :
                 <Group>
                 <GameField 
             cells={this.getGridStore().currentLevelGridCells}

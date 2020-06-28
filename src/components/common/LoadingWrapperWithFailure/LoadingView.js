@@ -8,7 +8,7 @@ class LoadingView extends React.Component {
   render() {
     return (
       <LoadingViewContainer>
-        <Loader />
+        <Loader fill={this.props.fill}/>
       </LoadingViewContainer>
     );
   }

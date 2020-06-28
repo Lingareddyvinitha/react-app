@@ -5,7 +5,7 @@ const Container = styled.div `${tw `flex justify-center items-center bg-gray-200
 
 const SignInContainer = styled.form `${tw `flex justify-center items-center flex-col bg-white m-6 `}`
 
-const UserName = styled.input `${tw`border-solid border border-current rounded-md h-12 w-56 m-2 outline-none`}`
+const UserName = styled.input`${tw`border-solid border border-current rounded-md h-12 w-56 m-2 outline-none`}`
 
 const Password = UserName.withComponent('input')
 

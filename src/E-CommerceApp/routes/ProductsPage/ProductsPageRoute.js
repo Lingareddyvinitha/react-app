@@ -46,6 +46,12 @@ class ProductsPageRoute extends React.Component {
             getProductListAPIError={getProductListAPIError}
             doNetworkCalls={this.doNetworkCalls}
             sortedAndFilteredProducts={this.getProductStore().sortedAndFilteredProducts}
+            currentPage={this.getProductStore().currentPage}
+            totalPages={this.getProductStore().totalPages}
+            onBackwardClick={this.getProductStore().onBackwardClick}
+            onFarwardButtonClick={this.getProductStore().onFarwardButtonClick}
+            getProductList={this.getProductStore().getProductList}
+             clearProductList={this.getProductStore(). clearProductList}
             />
         )
     }

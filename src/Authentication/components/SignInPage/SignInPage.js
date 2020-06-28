@@ -18,9 +18,28 @@ import {
 }
 from '../../styledComponents/SignInPageStyles'
 
-const Display = (props) => {
-    return <div>{props.children}</div>
+export const SignButton = (props) => {
+    return <SignIn onClick={props.onClickSignIn}>
+            {
+                (props.getUserSignInAPIStatus === 100) ? <Loader type="Oval" color="white" height={30} width={30} /> : <span>{props.buttonName ?? "Sign in"}</span> }
+            </SignIn>
 }
+
+export const Input = (props) => {
+    return <UserName type={props.type??"text"} placeholder={props.placeholder??"InputTag"}
+            ref={props.userNameRef}
+            value={props.username}
+            onChange={props.onChangeUsername}
+            onKeyDown={props.onChangeUsername}>
+            </UserName>
+}
+
+export const SignInLoader = (props) => {
+    return< Loader type = "Oval"
+     color = { props.color ? ? "black" } height = { props.height ? ? 30 } width = { props.width ? ? 30 } />
+}
+
+
 
 @observer
 class LoginPage extends React.Component {
@@ -28,6 +47,11 @@ class LoginPage extends React.Component {
     passwordRef = React.createRef();
     componentDidMount() {
         this.userNameRef.current.focus()
+    }
+
+    renderSignInButton = (props) => {
+        const { onClickSignIn, getUserSignInAPIStatus } = this.props
+        return <SignButton onClickSignIn={onClickSignIn} getUserSignInAPIStatus={getUserSignInAPIStatus}/>
     }
 
 
@@ -48,6 +72,7 @@ class LoginPage extends React.Component {
             <Container>
             <SignInContainer>
             <Heading>Sign In</Heading>
+            
             <UserName type='text' placeholder='Username'
             ref={this.userNameRef}
             value={username}
@@ -59,9 +84,7 @@ class LoginPage extends React.Component {
             value={password}
             onChange={onChangePassword}
             onKeyPress={onChangePassword}></Password>
-            <SignIn onClick={onClickSignIn}>
-            {(getUserSignInAPIStatus===100)?<Loader data-testid="loading" type="Oval" color="white" height={30} width={30} />:"Sign in"}
-            </SignIn>
+            {this.renderSignInButton()}
             {(getUserSignInAPIStatus===200)&& gotoECommerceAppIfLoggedIn()}
             <ErrorMessage>{errorMessage}</ErrorMessage>
             </SignInContainer>

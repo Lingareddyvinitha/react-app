@@ -29,20 +29,20 @@ global.mockRemoveCookie = mockRemoveCookie;
 global.mockGetCookie = mockGetCookie;
 
 describe("ProductStore Tests", () => {
-    let productsAPI;
-    let productsStore;
+            let productsAPI;
+            let productsStore;
 
-    beforeEach(() => {
-        productsAPI = new ProductService();
-        productsStore = new ProductStore(productsAPI);
-    });
+            beforeEach(() => {
+                productsAPI = new ProductService();
+                productsStore = new ProductStore(productsAPI);
+            });
 
-    it("should test initialising product store", () => {
-        expect(productsStore.getProductListAPIStatus).toBe(API_INITIAL);
-        expect(productsStore.getProductListAPIError).toBe(null);
-        expect(productsStore.sortBy).toBe("SELECT")
+            it("should test initialising product store", () => {
+                expect(productsStore.getProductListAPIStatus).toBe(API_INITIAL);
+                expect(productsStore.getProductListAPIError).toBe(null);
+                expect(productsStore.sortBy).toBe("SELECT")
 
-    });
+            });
 
     it("should test ProductListAPI data fetching state", () => {
         const mockLoadingPromise = new Promise(function(resolve, reject) {});

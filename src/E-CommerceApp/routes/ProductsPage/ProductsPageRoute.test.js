@@ -14,7 +14,7 @@ import stores from '../../../stores'
 import { ProductStore } from '../../stores/ProductStore'
 import { ProductsPageRoute } from '.'
 import AuthService from '../../../Authentication/services/Authentication'
-import AuthStore from '../../../Authentication/stores/AuthStore'
+import { SignInStore } from '../../../Authentication/stores/AuthStore'
 import CartStore from '../../stores/CartStore'
 
 const LocationDisplay = withRouter(({ location }) => (

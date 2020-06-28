@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import { Container, Group, SignOut, Top, Right, Left } from '../../styledComponents/ProductsPageStyles'
+import { Container, Group, SignOut, Top, Right, Left, Buttom } from '../../styledComponents/ProductsPageStyles'
 import LoadingWrapperWithFailure from '../../../common/LoadingWrapperWithFailure'
 import NoDataView from '../../../common/NoDataView'
 import Header from '../Header'
@@ -9,6 +9,7 @@ import ProductCart from '../ProductCart'
 import CookieConsent, { Cookies } from "react-cookie-consent";
 import Toastify from '../Toastify'
 import ProductList from '../ProductList'
+import { Pagination } from '../../../components/common/Pagination'
 
 @observer
 class ProductsPage extends React.Component {
@@ -39,6 +40,12 @@ class ProductsPage extends React.Component {
             onChangeSortBy,
             doNetworkCalls,
             sortedAndFilteredProducts,
+            totalPages,
+            currentPage,
+            onBackwardClick,
+            onFarwardButtonClick,
+            getProductList,
+            clearProductList
 
         } = this.props
         return (
@@ -64,8 +71,19 @@ class ProductsPage extends React.Component {
             onRetryClick={doNetworkCalls}
             renderSuccessUI={this.renderProductList}
             />
+            <Buttom>
+            <Pagination 
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onBackwardClick={onBackwardClick}
+            onFarwardButtonClick={onFarwardButtonClick}
+            getProductList={getProductList}
+             clearProductList={ clearProductList}
+            />
+            </Buttom>
             </Left>
             </Group>
+            
             <CookieConsent
     location="bottom"
     buttonText="Accept!!"

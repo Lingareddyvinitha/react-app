@@ -490,54 +490,56 @@ class A extends React.Component {
     }
 }
 export default A*/
-import React from 'react'
-class Cat extends React.Component {
-    render() {
-        const mouse = this.props.mouse;
-        return (
-            <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
-        );
-    }
-}
+// import React from 'react'
+// const Display = (props) => {
+//     return (<div>{props.children}</div>)
+// }
+// class A extends React.Component {
+//     constructor(props) {
+//         super(props);
 
-class MouseWithCat extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleMouseMove = this.handleMouseMove.bind(this);
-        this.state = { x: 0, y: 0 };
-    }
+//         this.textInput = null;
 
-    handleMouseMove(event) {
-        this.setState({
-            x: event.clientX,
-            y: event.clientY
-        });
-    }
+//         this.setTextInputRef = element => {
+//             console.log("element", element)
+//             this.textInput = element;
+//         };
 
-    render() {
-        return (
-            <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove}>
+//         this.focusTextInput = () => {
+//             // Focus the text input using the raw DOM API
+//             if (this.textInput) this.textInput.focus();
+//         };
+//     }
 
-        {/*
-          We could just swap out the <p> for a <Cat> here ... but then
-          we would need to create a separate <MouseWithSomethingElse>
-          component every time we need to use it, so <MouseWithCat>
-          isn't really reusable yet.
-        */}
-        <Cat mouse={this.state} />
-      </div>
-        );
-    }
-}
+//     componentDidMount() {
+//         // autofocus the input on mount
+//         this.focusTextInput();
+//     }
 
-class A extends React.Component {
-    render() {
-        return (
-            <div>
-        <h1>Move the mouse around!</h1>
-        <MouseWithCat />
-      </div>
-        );
-    }
-}
-export default A
+//     render() {
+//         // Use the `ref` callback to store a reference to the text input DOM
+//         // element in an instance field (for example, this.textInput).
+//         return (
+//             <div>
+//         <input
+//           type="text"
+//           ref={this.setTextInputRef}
+//         />
+//         <input
+//           type="button"
+//           value="Focus the text input"
+//           onClick={this.focusTextInput}
+//         />
+//         <Display>chitra</Display>
+//         <Display>{"vini"}</Display>
+//         <Display>{[1,2,3]}</Display>
+//         <Display>{1,2,3}</Display>
+//         <Display>{false}</Display>
+//         <Display>{undefined}</Display>
+//         <Display>{null}</Display>
+//         <Display/>
+//       </div>
+//         );
+//     }
+// }
+//  export default A

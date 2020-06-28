@@ -11,7 +11,9 @@ const Top = styled.div `${tw `flex justify-between items-start  my-2 h-12 w-full
 
 const Right = styled.div `${tw `w-1/4`}`
 
-const Group = styled.div `${tw `flex justify-center items-start  w-screen mx-8`}`
+const Buttom = styled.div `${tw `flex justify-end  flex-grow mr-12`}`
+
+const Group = styled.div `${tw `flex justify-center items-start  w-screen mx-8 `}`
 
 export {
     Container,
@@ -19,5 +21,6 @@ export {
     SignOut,
     Top,
     Right,
-    Left
+    Left,
+    Buttom
 }

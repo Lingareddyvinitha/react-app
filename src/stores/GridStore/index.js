@@ -30,8 +30,8 @@ class GridStore {
             this.incrementSelectedCellsCount();
             if (this.selectedCellsCount === levelData[this.level].hiddenCellCount) {
                 if (this.level === levelData.length - 1) {
-                    this.level++
-                        this.isGameCompleted = true
+
+                    this.isGameCompleted = true;
                 }
                 else {
                     this.goToNextLevelAndUpdateCells()

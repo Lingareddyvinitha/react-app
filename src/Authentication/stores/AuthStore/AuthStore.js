@@ -1,7 +1,7 @@
 import { observable, action, computed, reaction, autorun } from 'mobx'
 import { API_INITIAL, API_FETCHING, API_SUCCESS, API_FAILED } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { setAccessToken, clearUserSession } from '../../utils/StorageUtils'
+import { setAccessToken, clearUserSession, getAccessToken } from '../../utils/StorageUtils'
 
 class AuthStore {
     @observable getUserSignInAPIStatus
@@ -27,7 +27,6 @@ class AuthStore {
 
     @action.bound
     setGetUserSignInAPIResponse(response) {
-        //console.log(response)
         setAccessToken(response[0].access_token)
 
     }
@@ -40,7 +39,6 @@ class AuthStore {
 
     @action.bound
     setGetUserSignInAPIStatus(status) {
-        console.log("store", status);
         this.getUserSignInAPIStatus = status
     }
 

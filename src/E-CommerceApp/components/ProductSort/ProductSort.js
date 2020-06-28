@@ -6,7 +6,6 @@ import { observer } from 'mobx-react'
 class ProductSort extends React.Component {
     onSelectSortBy = (event) => {
         const { onSelectSortBy } = this.props
-        alert(event.target.value)
         onSelectSortBy(event.target.value)
     }
     render() {

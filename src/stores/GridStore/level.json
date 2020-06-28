@@ -16,11 +16,5 @@
         "hiddenCellCount": 5,
         "gridWidth": 350,
         "cellWidth": 60
-    },
-    {
-        "gridSize": 6,
-        "hiddenCellCount": 6,
-        "gridWidth": 360,
-        "cellWidth": 50
     }
 ]

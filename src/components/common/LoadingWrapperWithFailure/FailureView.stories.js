@@ -21,7 +21,7 @@ export const withOnRetryAndErrorMessageProp = () => (
 
 export const knobs = () => (
    <FailureView
-      errorMessage={text('errorMessage', 'failed message')}
+      errorMessage = { text('errorMessage', 'failed message') }
       onRetryClick={action('retry clicked')}
    />
 )

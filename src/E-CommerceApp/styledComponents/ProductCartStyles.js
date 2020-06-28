@@ -8,11 +8,11 @@ transition: width 500ms;
 
 const Display = styled.div `${tw ``}`
 
-const Cart = styled.div `${tw ` w-20 h-20 text-5xl pt-1 mt-3  `}`
+const Cart = styled.button `${tw ` w-20 h-20 text-5xl pt-1 mt-2  border-2 border-blue-500`}`
 
 const Group = styled.div `${tw ``}`
 
-const Wrapper = styled.div `${tw ` -mt-16`}`
+const Wrapper = styled.div `${tw `flex justify-center border border-black border-solid -mt-16`}`
 
 const NoOfProductsInCart = styled.p `${tw `text-orange-400 -mt-16 pb-4 ml-6`}`
 

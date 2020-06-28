@@ -3,7 +3,7 @@ import { observable } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { withRouter, Redirect } from "react-router-dom";
 import { getAccessToken } from '../../utils/StorageUtils';
-import SignInPage from '../../components/SignInPage'
+import { SignInPage } from '../../components/SignInPage'
 
 
 
@@ -31,7 +31,6 @@ class SignInRoute extends React.Component {
         this.username = event.target.value
         this.errorMessage = ""
         if (event.keyCode == 13) {
-            event.preventDefault()
             this.signFormRef.current.passwordRef.current.focus()
         }
 
@@ -47,13 +46,13 @@ class SignInRoute extends React.Component {
         this.password = event.target.value
         this.errorMessage = ""
         if (event.keyCode == 13) {
-            event.preventDefault()
             this.signFormRef.current.passwordRef.current.focus()
         }
     }
 
-    onClickSignIn = () => {
-        console.log("SignIn")
+    onClickSignIn = (event) => {
+        event.preventDefault()
+        console.log("onClickSignIn")
         if (this.username !== '' && this.password !== '') {
             this.errorMessage = ''
             /*
@@ -77,12 +76,15 @@ class SignInRoute extends React.Component {
     }
 
     gotoECommerceAppIfLoggedIn = () => {
+        event.preventDefault()
+        console.log("gotoECommerceAppIfLoggedIn", getAccessToken())
         if (getAccessToken() === "f5af9f51-07e6-4332-8f1a-c0c11c1e3434") {
             const { history } = this.props;
             history.replace("/products-page")
             console.log("history changed")
 
         }
+        console.log("gotoECommerceAppIfLoggedIn after history changes")
     }
     render() {
 

@@ -23,10 +23,8 @@ class CartStore {
         if (isItemInCart === undefined) {
             const cartModel = new CartModel(product)
             cartProducts.push(cartModel)
-            console.log("if", this.cartProductList.length)
         }
         else {
-            console.log("else", this.cartProductList)
             isItemInCart.incrementQuantity()
         }
         this.cartProductList = cartProducts
