@@ -161,8 +161,6 @@ class A extends Component {
 export default A;
 */
 
-
-
 /*
 import React, { Component } from "react";
 import { render } from "react-dom";
@@ -543,3 +541,32 @@ export default A*/
 //     }
 // }
 //  export default A
+import React, { Component } from 'react'
+import {
+   Card,
+   Icon,
+   Details,
+   Name,
+   Email,
+   PhoneNumber
+} from './styledComponents'
+
+class CardComponent extends Component {
+   render() {
+      return (
+         <Card>
+            <Icon
+               src='https://d1ov0p6puz91hu.cloudfront.net/logos/iBhubs_logo.svg'
+               alt='logo'
+            />
+            <Details>
+               <Name>RGUKT</Name>
+               <Email>123@rguktrkv.ac.in</Email>
+               <PhoneNumber>1234567-456</PhoneNumber>
+            </Details>
+         </Card>
+      )
+   }
+}
+
+export default CardComponent
